@@ -26,46 +26,48 @@
       <div class="right-panel d-flex flex-column justify-content-center p-5">
         
         <h2 class="mb-4 fw-semibold text-center">Register</h2>
-        <form>
+      <form action="officer_register_process.php" method="POST">
+
+
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-            <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-            <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-award-fill"></i></span>
-            <input type="text" class="form-control" id="badge_no" placeholder="Badge Number" required>
+            <input type="text" class="form-control" id="badge_no" name="badge_no" placeholder="Badge Number" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-            <input type="text" class="form-control" id="nic" placeholder="NIC Number" required>
+            <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-            <input type="text" class="form-control" id="address" placeholder="Address" required>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-            <input type="text" class="form-control" id="contact_no" placeholder="Contact Number" required>
+            <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" required>
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-building"></i></span>
-            <input type="text" class="form-control" id="station" placeholder="Police Station" required>
+            <input type="text" class="form-control" id="station" name="station" placeholder="Police Station" required>
           </div>
 
           <button type="submit" class="btn btn-primary w-100">REGISTER</button>

@@ -21,14 +21,15 @@
       </div>
       <div class="right-panel d-flex flex-column justify-content-center p-5">
         <h2 class="mb-4 fw-semibold text-center">Login</h2>
-        <form>
+       <form action="login_process.php" method="POST">
+
           <div class="mb-3">
             <label for="email" class="form-label fw-semibold">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label fw-semibold">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
           </div>
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div>

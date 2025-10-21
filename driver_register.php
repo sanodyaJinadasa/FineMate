@@ -27,36 +27,42 @@
       <div class="right-panel d-flex flex-column justify-content-center p-5">
         
         <h2 class="mb-4 fw-semibold text-center">Register</h2>
-        <form>
+      <form action="driver_register_process.php" method="POST">
+
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-            <input type="text" class="form-control" id="name" placeholder="Full Name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-            <input type="email" class="form-control" id="email" placeholder="Email Address">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-            <input type="text" class="form-control" id="nic" placeholder="NIC Number">
+            <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number">
+          </div>
+
+           <div class="mb-3 input-group">
+            <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+            <input type="text" class="form-control" id="license_no" name="license_no" placeholder="License Number">
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-            <input type="text" class="form-control" id="address" placeholder="Address">
+            <input type="text" class="form-control" id="address" name="address" placeholder="Address">
           </div>
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-            <input type="text" class="form-control" id="contact_no" placeholder="Contact Number">
+            <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number">
           </div>
 
           <button type="submit" class="btn btn-primary w-100">REGISTER</button>
