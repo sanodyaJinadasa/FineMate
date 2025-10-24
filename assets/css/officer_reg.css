@@ -1,0 +1,184 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100vh;
+  background: url('../../img/officer_reg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+.container-box {
+  display: flex;
+  width: 900px;
+  max-width: 95%;
+  height: 595px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.left-panel {
+  flex: 1;
+  position: relative;
+  background: url('../../img/reg_inside.jpg') no-repeat center center/cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overlay h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(0, 200, 255, 0.4),
+               0 0 30px rgba(0, 150, 255, 0.3);
+  margin-bottom: 18px;
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.4),
+                 0 0 20px rgba(0, 200, 255, 0.3),
+                 0 0 30px rgba(0, 200, 255, 0.2);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.7),
+                 0 0 40px rgba(0, 255, 255, 0.6),
+                 0 0 60px rgba(0, 255, 255, 0.5);
+  }
+}
+
+.overlay p {
+  font-size: 1.1rem;
+  color: #e0e0e0b6;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: justify;           
+}
+
+.right-panel {
+    flex: 1;
+    background: #fff;
+}
+
+.form-control, .form-select {
+    height: 33px;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    justify-content: center; 
+    align-items: center;
+}
+
+.input-group-text {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.45rem;
+    background-color: black;
+    color: white;
+}
+
+
+@media (max-width: 900px) {
+  .container-box {
+    flex-direction: column;
+    height: auto; 
+    border-radius: 14px;
+  }
+
+  .left-panel {
+    height: 220px; 
+    flex: none;
+  }
+
+  .overlay {
+    padding: 28px;
+  }
+
+  .overlay h1 {
+    font-size: 1.6rem;
+  }
+
+  .overlay p {
+    font-size: 0.95rem;
+  }
+
+  .right-panel {
+    padding: 20px !important;
+  }
+
+  .right-panel form .form-control {
+    padding: 12px 14px;
+  }
+
+  .right-panel button {
+    padding: 12px;
+  }
+
+}
+
+@media (max-width: 420px) {
+  .overlay {
+    padding: 18px;
+  }
+
+  .overlay h1 {
+    font-size: 1.2rem;
+  }
+
+  .container-box {
+    border-radius: 10px;
+  }
+
+  .left-panel {
+    height: 180px;
+  }
+
+  .right-panel h2 {
+    font-size: 1.25rem;
+  }
+
+  .right-panel form .form-control {
+    font-size: 0.95rem;
+  }
+
+  .right-panel button {
+    font-size: 1rem;
+  }
+
+}
+
+.right-panel form .form-control {
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.right-panel button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+}
