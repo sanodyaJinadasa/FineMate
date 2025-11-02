@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FineMate | Traffic Fine Management System</title>
   <style>
-    /* ---------- Global Styles ---------- */
   body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: #222;
   scroll-behavior: smooth;
-
-  /* Background styling */
   background: #0e1117 url('img/home_bg1.jpg');
-  background-size: cover;        /* makes it fill the screen */
-  background-position: center;   /* centers the image */
-  background-repeat: no-repeat;  /* prevents tiling */
-  background-attachment: fixed;  /* makes it stay still on scroll */
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat;  
+  background-attachment: fixed;  
 }
 
     a {
@@ -30,7 +27,6 @@
       display: block;
     }
 
-    /* -------------------- Navbar Styling -------------------- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -46,18 +42,16 @@
   transition: all 0.3s ease;
 }
 
-/* Scroll effect */
 .navbar.scrolled {
   background: rgba(30, 77, 160, 0.95);
   backdrop-filter: blur(8px);
   padding: 10px 50px;
 }
 
-/* Logo */
 .navbar .logo {
   display: flex;
   align-items: center;
-  font-family: 'Poppins', sans-serif; /* clean, professional font */
+  font-family: 'Poppins', sans-serif; 
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -67,20 +61,6 @@
   position: relative;
 }
 
-/* Subtle underline animation */
-/* .navbar .logo::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background-color: #0078ff;
-  border-radius: 2px;
-  transition: width 0.4s ease;
-} */
-
-/* Hover effects */
 .navbar .logo:hover {
   transform: scale(1.05);
   color: #00e5ffff;
@@ -107,7 +87,6 @@
   transform: rotate(8deg);
 }
 
-/* Menu Items */
 .navbar ul {
   list-style: none;
   display: flex;
@@ -133,7 +112,6 @@
   position: relative;
 }
 
-/* Underline animation on hover */
 .navbar ul li a::after {
 width: 100%;
 }
@@ -143,8 +121,6 @@ width: 100%;
   color: #00e5ffff;
 }
 
-
-/* -------------------- Responsive Design -------------------- */
 @media (max-width: 992px) {
   .navbar {
     flex-direction: column;
@@ -180,7 +156,6 @@ width: 100%;
   }
 }
 
-/* -------------------- Hamburger Menu -------------------- */
 .menu-toggle {
   color: #fff;
   font-size: 28px;
@@ -192,7 +167,6 @@ width: 100%;
   transform: rotate(90deg);
 }
 
-/* -------------------- Button Style Example -------------------- */
 .navbar .btn-login {
   background: #ffe15d;
   color: #1e4da0;
@@ -209,9 +183,6 @@ width: 100%;
   box-shadow: 0 4px 10px rgba(255, 225, 93, 0.4);
 }
 
-
-    /* ---------- Hero Section ---------- */
-/* -------------------- Hero Section -------------------- */
 .hero {
   display: flex;
   align-items: center;
@@ -221,14 +192,6 @@ width: 100%;
   position: relative;
 }
 
-/* Decorative background elements */
-/* .hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-} */
 
 .hero::before {
   width: 400px;
@@ -246,7 +209,6 @@ width: 100%;
   left: -100px;
 }
 
-/* Text content */
 .hero-text {
   max-width: 50%;
   z-index: 1;
@@ -254,7 +216,7 @@ width: 100%;
 }
 
 .hero-text h1 {
-  font-family: 'Poppins', sans-serif; /* clean, modern, and professional font */
+  font-family: 'Poppins', sans-serif; 
   font-size: 54px;
   font-weight: 700;
   line-height: 1.2;
@@ -262,11 +224,10 @@ width: 100%;
   color: #ffffffff;
   margin-bottom: 24px;
   text-align: center;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* soft depth shadow */
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
   transition: transform 0.4s ease, text-shadow 0.4s ease;
 }
 
-/* Gradient-highlighted word or phrase */
 .hero-text h1 span {
   background: linear-gradient(90deg, #1e4da0, #2c64c6, #3e82ff);
   -webkit-background-clip: text;
@@ -275,13 +236,11 @@ width: 100%;
   position: relative;
 }
 
-/* Hover animation for better interactivity */
 .hero-text h1:hover {
   transform: scale(1.03);
   text-shadow: 0 2px 6px rgba(0, 255, 255, 1);
 }
 
-/* Subtle glowing animation for the gradient part */
 .hero-text h1 span::after {
   content: '';
   position: absolute;
@@ -306,7 +265,6 @@ width: 100%;
   max-width: 90%;
 }
 
-/* Primary Button */
 .btn-primary {
   font-family: 'Poppins', sans-serif;
    background: linear-gradient(
@@ -336,9 +294,6 @@ width: 100%;
   box-shadow: 0 0 10px rgba(44, 100, 198, 0.3);
 }
 
-
-/* Hero image */
-/* ---------- Hero Image Container ---------- */
 .hero-image {
   position: relative;
   display: flex;
@@ -350,7 +305,6 @@ width: 100%;
   background: transparent;
 }
 
-/* ---------- Hero Image Styling ---------- */
 .hero-image img {
   width: 600px;
   height: 450px;
@@ -362,14 +316,12 @@ width: 100%;
   cursor: pointer;
 }
 
-/* ---------- Hover Effects ---------- */
 .hero-image img:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   filter: brightness(1.05);
 }
 
-/* ---------- Decorative Floating Animation ---------- */
 @keyframes fadeInRight {
   from {
     opacity: 0;
@@ -381,7 +333,6 @@ width: 100%;
   }
 }
 
-/* ---------- Optional Floating Animation ---------- */
 @keyframes floatImage {
   0% {
     transform: translateY(0);
@@ -394,12 +345,10 @@ width: 100%;
   }
 }
 
-/* Apply floating for extra liveliness */
 .hero-image img {
   animation: fadeInRight 1s ease, floatImage 5s ease-in-out infinite;
 }
 
-/* ---------- Responsive Design ---------- */
 @media (max-width: 768px) {
   .hero-image img {
     width: 90%;
@@ -419,7 +368,6 @@ width: 100%;
   }
 }
 
-/* ---------- Optional Caption or Overlay ---------- */
 .hero-image::after {
   position: absolute;
   bottom: 20px;
@@ -440,8 +388,6 @@ width: 100%;
   opacity: 1;
 }
 
-
-/* -------------------- Animations -------------------- */
 @keyframes fadeInLeft {
   from {
     opacity: 0;
@@ -464,7 +410,6 @@ width: 100%;
   }
 }
 
-/* -------------------- Responsive Design -------------------- */
 @media (max-width: 992px) {
   .hero {
     flex-direction: column-reverse;
@@ -503,9 +448,6 @@ width: 100%;
   }
 }
 
-
-    /* ---------- Cards Section ---------- */
-/* -------------------- Card Section -------------------- */
 .cards {
   display: flex;
   justify-content: center;
@@ -517,15 +459,6 @@ width: 100%;
   position: relative;
   overflow: hidden;
 }
-
-/* Decorative background shapes */
-/* .cards::before,
-.cards::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-} */
 
 .cards::before {
   width: 500px;
@@ -543,7 +476,6 @@ width: 100%;
   right: -100px;
 }
 
-/* -------------------- Card Style -------------------- */
 .card {
   background: #d0d0d0ff;
   padding: 50px 30px 40px;
@@ -557,7 +489,6 @@ width: 100%;
   z-index: 1;
 }
 
-/* Top accent bar */
 .card::before {
   content: "";
   position: absolute;
@@ -585,13 +516,11 @@ width: 100%;
   opacity: 0.05;
 }
 
-/* Hover animation */
 .card:hover {
   transform: translateY(-12px) scale(1.02);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Icon/Image */
 .card img {
   width: 90px;
   margin-bottom: 20px;
@@ -606,7 +535,6 @@ width: 100%;
   transform: scale(1.1) rotate(3deg);
 }
 
-/* Heading */
 .card h3 {
   color: #1b3a75;
   margin-bottom: 15px;
@@ -619,7 +547,6 @@ width: 100%;
   color: #2c64c6;
 }
 
-/* Paragraph */
 .card p {
   color: #3f3c3cff;
   line-height: 1.7;
@@ -627,7 +554,6 @@ width: 100%;
   margin-bottom: 0;
 }
 
-/* Button (optional if you want inside cards) */
 .card .btn-learn {
   display: inline-block;
   margin-top: 20px;
@@ -646,7 +572,6 @@ width: 100%;
   transform: translateY(-3px);
 }
 
-/* -------------------- Responsive Design -------------------- */
 @media (max-width: 1024px) {
   .cards {
     gap: 30px;
@@ -671,8 +596,6 @@ width: 100%;
   }
 }
 
-
-    /* ---------- Footer ---------- */
     footer {
       background: linear-gradient(
          rgba(56, 56, 56, 0.8),
@@ -694,7 +617,6 @@ width: 100%;
       text-decoration: underline;
     }
 
-    /* ---------- Animations ---------- */
     @keyframes fadeInLeft {
       from { opacity: 0; transform: translateX(-50px); }
       to { opacity: 1; transform: translateX(0); }
@@ -708,7 +630,6 @@ width: 100%;
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">
       <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">
@@ -723,7 +644,6 @@ width: 100%;
     </ul>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-text">
       <h1>Traffic Fine Management System</h1>
@@ -735,7 +655,6 @@ width: 100%;
     </div>
   </section>
 
-  <!-- Cards Section -->
   <section class="cards">
     <div class="card">
       <img src="img/fine_history_icon.jpg" alt="Fine History Icon">
@@ -756,7 +675,6 @@ width: 100%;
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 FineMate System</p>
     <p>
