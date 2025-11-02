@@ -1,0 +1,124 @@
+body {
+    background: linear-gradient(135deg, #e0f7fa, #e3f2fd);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.fine-title-1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #0d47a1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 3px solid #1976d2;
+    display: inline-block;
+    padding: 10px 35px;
+    border-radius: 50px;
+    background-color: #e3f2fd;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.fine-title-1:hover {
+    background-color: #1976d2;
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(25, 118, 210, 0.4);
+}
+
+.fine-title {
+    animation: fadeInSlide 0.8s ease-out;
+}
+
+h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #1976d2;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+h3:hover::after {
+    width: 100px;
+}
+
+
+
+.form-label {
+    font-weight: 500;
+    color: #0d47a1;
+}
+
+.form-control, .form-select, textarea {
+    border-radius: 8px;
+    border: 1px solid #90caf9;
+    box-shadow: none;
+    transition: 0.3s;
+}
+
+.interactive-input:hover {
+    border-color: #42a5f5;
+    box-shadow: inset 0 1px 4px rgba(25,118,210,0.1);
+}
+
+.form-control:focus, 
+.form-select:focus, 
+textarea:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+}
+
+.btn-primary {
+    background: #1976d2;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: #0d47a1;
+}
+
+.alert {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}

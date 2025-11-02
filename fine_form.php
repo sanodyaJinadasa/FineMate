@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Fine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets\css\fine_form.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="card mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+                <h1 class="fine-title-1 text-center mb-4">Add Fine</h1>
+
+                <form action="process_fine.php" method="POST">
+                    
+                    <h3 class="text-primary mb-2 mt-3">Officer Details</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Officer ID</label>
+                            <input type="number" name="officer_id" class="form-control" placeholder="Enter officer ID" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Case Number</label>
+                            <input type="text" name="case_no" class="form-control" placeholder="Auto/Manual case number">
+                        </div>
+                    </div>
+
+                    <h3 class="text-primary mb-2 mt-3">Offender Details</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Offender Name</label>
+                            <input type="text" name="offender_name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">National ID (NIC)</label>
+                            <input type="text" name="offender_nic" class="form-control" placeholder="Enter NIC number">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">License No</label>
+                            <input type="text" name="offender_license_no" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Vehicle No</label>
+                            <input type="text" name="vehicle_no" class="form-control">
+                        </div>
+                    </div>
+
+                    <h3 class="text-primary mb-2 mt-3">Violation Details</h3>
+                    <div class="mb-3">
+                        <label class="form-label">Fine Type</label>
+                        <select name="fine_type" class="form-select" required>
+                            <option value="">-- Select Fine Type --</option>
+                            <option>Speeding</option>
+                            <option>No Helmet</option>
+                            <option>Illegal Parking</option>
+                            <option>Signal Violation</option>
+                            <option>Drunk Driving</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fine Amount (Rs)</label>
+                        <input type="number" step="0.01" name="fine_amount" class="form-control" required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Date</label>
+                            <input type="date" name="fine_date" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Time</label>
+                            <input type="time" name="fine_time" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <input type="text" name="fine_location" class="form-control" placeholder="e.g., Galle Road, Colombo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Weather Conditions</label>
+                        <select name="weather" class="form-select">
+                            <option value="">-- Select Condition --</option>
+                            <option>Clear</option>
+                            <option>Rainy</option>
+                            <option>Foggy</option>
+                            <option>Nighttime</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" rows="3" class="form-control" placeholder="Describe the violation..."></textarea>
+                    </div>
+
+                    <h3 class="text-primary mb-2 mt-3">Payment Details</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Payment Status</label>
+                            <select name="payment_status" class="form-select">
+                                <option value="Pending">Pending</option>
+                                <option value="Paid">Paid</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" name="due_date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Remarks</label>
+                        <textarea name="remarks" rows="2" class="form-control" placeholder="Any officer notes..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Submit Fine</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 FineMate
+        </footer>
+    </div>
+</body></html>
