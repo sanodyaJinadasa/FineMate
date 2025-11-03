@@ -639,8 +639,8 @@ width: 100%;
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
-      <li><a href="user_login.php">User Login</a></li>
-      <li><a href="officer_login.php">Officer Login</a></li>
+      <li><a href="login.php">User Login</a></li>
+      <li><a href="login.php">Officer Login</a></li>
     </ul>
   </nav>
 

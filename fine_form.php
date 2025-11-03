@@ -18,7 +18,7 @@
                 <form action="process_fine.php" method="POST">
                     
                     <h3 class="text-primary mb-2 mt-3">Officer Details</h3>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Officer ID</label>
                             <input type="number" name="officer_id" class="form-control" placeholder="Enter officer ID" required>
@@ -27,7 +27,7 @@
                             <label class="form-label">Case Number</label>
                             <input type="text" name="case_no" class="form-control" placeholder="Auto/Manual case number">
                         </div>
-                    </div>
+                    </div> -->
 
                     <h3 class="text-primary mb-2 mt-3">Offender Details</h3>
                     <div class="row mb-3">
