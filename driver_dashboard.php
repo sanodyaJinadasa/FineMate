@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'driver') {
-    header('Location: login.html');
+    header('Location: login.php');
     exit;
 }
 
@@ -18,5 +18,6 @@ $userName = $_SESSION['name'];
 <body>
     <h1>Driver Dashboard</h1>
     <p>Welcome, <?php echo htmlspecialchars($userName); ?>!</p>
+     <a href="view_driver_fines.php">View Fines</a>
 </body>
 </html>

@@ -19,8 +19,8 @@ $userName = $_SESSION['name'];
 <body>
     <h1>Officer Dashboard</h1>
     <p>Welcome, <?php echo htmlspecialchars($userName); ?>!</p>
-    <a href="fine_form.php">Add Fine</a>
-
+    <a href="fine_form.php">Add Fine</a><br>
+    <a href="view_officer_fines.php">View Fines</a>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
