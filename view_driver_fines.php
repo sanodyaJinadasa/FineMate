@@ -22,7 +22,6 @@ try {
 
     $driver_nic = $driver['nic'];
 
-    // Get all fines for this driver
     $stmt = $pdo->prepare("SELECT * FROM fines WHERE offender_nic = ? ORDER BY fine_date DESC, fine_time DESC");
     $stmt->execute([$driver_nic]);
     $fines = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,12 +77,18 @@ try {
                                 <td><?= htmlspecialchars($fine['payment_status']) ?></td>
                                 <td><?= htmlspecialchars($fine['due_date']) ?></td>
                                 <td><?= htmlspecialchars($fine['remarks']) ?></td>
-                                <td></td>
-                                    <?php if ($fine['payment_status'] === 'payment_status'): ?>
-                                        <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>" class="btn btn-sm btn-primary">Pay Now</a>
+                                <td>
+                                    <?php if ($fine['payment_status'] === 'Pending'): ?>
+                                        <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>"
+                                            class="btn btn-sm btn-primary">Pay</a>
                                     <?php else: ?>
-                                        <span class="text-success">Paid</span>
+                                        <a href="generate_fine_pdf.php?fine_id=<?= $fine['fine_id'] ?>"
+                                            class="btn btn-sm btn-danger" target="_blank">
+                                            <i class="fas fa-file-pdf"></i> PDF
+                                        </a>
+                                        <span class="badge bg-success">Done</span>
                                     <?php endif; ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -91,7 +96,7 @@ try {
             </div>
         <?php endif; ?>
     </div>
-      <?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

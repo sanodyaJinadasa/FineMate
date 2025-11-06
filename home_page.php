@@ -69,12 +69,13 @@ session_start();
       <h2 class="contact-title">Contact Us</h2>
       <p class="contact-text">We’d love to hear from you! Get in touch with our team for inquiries or support.</p>
 
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" action="contact_process.php" method="post">
         <input type="text" name="name" placeholder="Your Name" class="contact-input" required>
         <input type="email" name="email" placeholder="Your Email" class="contact-input" required>
         <textarea name="message" rows="4" placeholder="Your Message" class="contact-textarea" required></textarea>
         <button type="submit" class="contact-btn">Send Message</button>
       </form>
+
 
       <div class="contact-info">
         <div class="contact-info-box">

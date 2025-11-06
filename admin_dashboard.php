@@ -66,6 +66,16 @@ $admin_name = $_SESSION['name'];
                 </div>
             </div>
         </div>
+
+         <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">View Messages</h5>
+                    <p class="card-text">Manage contact messages.</p>
+                    <a href="admin_view_msg.php" class="btn btn-primary">View Messages</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
