@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-$userName = $_SESSION['name'];
 ?>
 
 <!DOCTYPE html>
@@ -641,10 +640,13 @@ width: 100%;
     <div class="logo">
       <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">
       <span>FineMate</span>
-       <?php echo htmlspecialchars($userName); ?>
+      <?php if (isset($_SESSION['user_id']) && isset($_SESSION['name'])): ?>
+        <span class="username"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
+    <?php endif; ?>
     </div>
     <ul>
       <li><a href="#">Home</a></li>
+      <li><a href="view_driver_fines.php">View Fines</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
      <?php if (isset($_SESSION['user_id'])): ?>

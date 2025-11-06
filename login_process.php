@@ -41,7 +41,7 @@ try {
     } elseif ($user['role'] === 'officer') {
         header('Location: officer_dashboard.php');
     } else {
-        header('Location: driver_dashboard.php');
+        header('Location: home_page.php');
     }
     exit;
 } catch (Exception $e) {
