@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'driver') {
+    header('Location: login.php');
+    exit;
+}
+
+$userName = $_SESSION['name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -628,18 +639,24 @@ width: 100%;
     }
   </style>
 </head>
+
 <body>
 
   <nav class="navbar">
     <div class="logo">
       <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">
       <span>FineMate</span>
+       <?php echo htmlspecialchars($userName); ?>
     </div>
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
-      <li><a href="login.php">User Login</a></li>
+     <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="logout.php">Logout</a></li>
+    <?php else: ?>
+        <li><a href="login.php">User Login</a></li>
+    <?php endif; ?>
       <li><a href="login.php">Officer Login</a></li>
     </ul>
   </nav>
