@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets\css\fine_form.css">
 </head>
 <body>
+    <!-- <?php include 'header.php'; ?> -->
     <div class="container py-5">
         <div class="card mx-auto" style="max-width: 800px;">
             <div class="card-body">
@@ -18,16 +19,7 @@
                 <form action="process_fine.php" method="POST">
                     
                     <h3 class="text-primary mb-2 mt-3">Officer Details</h3>
-                    <!-- <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Officer ID</label>
-                            <input type="number" name="officer_id" class="form-control" placeholder="Enter officer ID" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Case Number</label>
-                            <input type="text" name="case_no" class="form-control" placeholder="Auto/Manual case number">
-                        </div>
-                    </div> -->
+                 
 
                     <h3 class="text-primary mb-2 mt-3">Offender Details</h3>
                     <div class="row mb-3">
@@ -132,4 +124,6 @@
             © 2025 FineMate
         </footer>
     </div>
-</body></html>
+    <!-- <?php include 'footer.php'; ?> -->
+</body>
+</html>

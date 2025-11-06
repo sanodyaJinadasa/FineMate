@@ -1,5 +1,4 @@
 <?php
-// login.php
 session_start();
 require 'db_connect.php';
 
@@ -39,7 +38,7 @@ try {
     if ($user['role'] === 'admin') {
         header('Location: admin_dashboard.php');
     } elseif ($user['role'] === 'officer') {
-        header('Location: officer_dashboard.php');
+        header('Location: home_page.php');
     } else {
         header('Location: home_page.php');
     }

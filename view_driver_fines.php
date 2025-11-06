@@ -62,6 +62,7 @@ try {
                             <th>Payment Status</th>
                             <th>Due Date</th>
                             <th>Remarks</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,12 @@ try {
                                 <td><?= htmlspecialchars($fine['payment_status']) ?></td>
                                 <td><?= htmlspecialchars($fine['due_date']) ?></td>
                                 <td><?= htmlspecialchars($fine['remarks']) ?></td>
+                                <td></td>
+                                    <?php if ($fine['payment_status'] === 'payment_status'): ?>
+                                        <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>" class="btn btn-sm btn-primary">Pay Now</a>
+                                    <?php else: ?>
+                                        <span class="text-success">Paid</span>
+                                    <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

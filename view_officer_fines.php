@@ -2,7 +2,6 @@
 session_start();
 require 'db_connect.php';
 
-// Only logged-in officers
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'officer') {
     die("Unauthorized access.");
 }
@@ -25,6 +24,7 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php include 'header.php'; ?>
 <div class="container py-5">
     <h1 class="mb-4">Fines Added by You</h1>
 
@@ -75,5 +75,7 @@ try {
         </div>
     <?php endif; ?>
 </div>
+
+<?php include 'footer.php'; ?>
 </body>
 </html>
