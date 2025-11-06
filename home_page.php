@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'driver') {
-    header('Location: login.php');
-    exit;
-}
-
 $userName = $_SESSION['name'];
 ?>
 
@@ -655,9 +650,8 @@ width: 100%;
      <?php if (isset($_SESSION['user_id'])): ?>
         <li><a href="logout.php">Logout</a></li>
     <?php else: ?>
-        <li><a href="login.php">User Login</a></li>
+        <li><a href="login.php">Login</a></li>
     <?php endif; ?>
-      <li><a href="login.php">Officer Login</a></li>
     </ul>
   </nav>
 
