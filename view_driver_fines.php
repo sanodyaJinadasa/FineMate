@@ -41,6 +41,7 @@ try {
 </head>
 
 <body>
+    <?php include 'header.php'; ?>
     <div class="container py-5">
         <h1 class="mb-4">My Fines</h1>
 
@@ -83,6 +84,7 @@ try {
             </div>
         <?php endif; ?>
     </div>
+      <?php include 'footer.php'; ?>
 </body>
 
 </html>
