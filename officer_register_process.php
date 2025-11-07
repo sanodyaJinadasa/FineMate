@@ -46,7 +46,7 @@ try {
 
     $pdo->commit();
 
-    echo "Officer registration submitted. Await admin approval.";
+   header('Location: home_page.php'); 
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
     die("Registration failed: " . $e->getMessage());

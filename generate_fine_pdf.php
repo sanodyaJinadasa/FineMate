@@ -1,6 +1,6 @@
 <?php
 require 'db_connect.php';
-require 'vendor/autoload.php'; // ensure you have dompdf installed via composer
+require 'vendor/autoload.php'; 
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

@@ -71,7 +71,7 @@ try {
         $remarks
     ]);
 
-     header('Location: fine_page.php?success=1');
+     header('Location: fine_form.php?success=1');
     echo "Fine successfully recorded!";
 } catch (Exception $e) {
     die("Error saving fine: " . $e->getMessage());

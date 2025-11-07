@@ -2,9 +2,8 @@
 session_start();
 require 'db_connect.php';
 
-// Fetch all messages
 $stmt = $pdo->prepare("SELECT * FROM contact_messages ORDER BY created_at DESC");
-$stmt->execute(); // ✅ Execute before fetching
+$stmt->execute(); 
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

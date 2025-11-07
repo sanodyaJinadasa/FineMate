@@ -7,6 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+if (isset($_POST['remember'])) {
+    setcookie('email', $_POST['email'], time() + (86400 * 30), "/"); 
+}
+
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
@@ -18,6 +22,9 @@ try {
     $stmt = $pdo->prepare("SELECT user_id, name, password, role, status FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
+
+
+
 
     if (!$user) {
         die('No account found with this email.');

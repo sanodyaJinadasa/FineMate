@@ -50,7 +50,7 @@ try {
     $_SESSION['role'] = 'driver';
     $_SESSION['name'] = $name;
 
-    header('Location: driver_dashboard.php'); 
+    header('Location: home_page.php'); 
     exit;
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
