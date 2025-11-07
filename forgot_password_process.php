@@ -1,52 +1,72 @@
 <?php
 session_start();
-require 'db_connect.php'; // your PDO connection file
+require 'db_connect.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // if installed via Composer
+// OR if manually installed:
+// require 'PHPMailer/src/PHPMailer.php';
+// require 'PHPMailer/src/SMTP.php';
+// require 'PHPMailer/src/Exception.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['resetEmail']);
 
-    // Step 1: Check if the email exists
+    // Check if email exists
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
     if ($user) {
-        // Step 2: Generate a token
         $token = bin2hex(random_bytes(32));
+            date_default_timezone_set('Asia/Colombo');
+
         $expires = date("Y-m-d H:i:s", strtotime('+1 hour'));
 
-        // Step 3: Save token in DB
+        // Save token
         $update = $pdo->prepare("UPDATE users SET reset_token = ?, reset_token_expires = ? WHERE email = ?");
         $update->execute([$token, $expires, $email]);
 
-        // Step 4: Create reset link
         $reset_link = "http://localhost/finemate/reset_password.php?token=" . $token;
 
-        // Step 5: Send email (simplified)
-        $subject = "Password Reset - FineMate";
-        $message = "
-        <html>
-        <head><title>Password Reset</title></head>
-        <body>
-            <p>Hi {$user['name']},</p>
-            <p>You requested a password reset. Click the link below to reset your password:</p>
-            <p><a href='$reset_link'>$reset_link</a></p>
-            <p>This link will expire in 1 hour.</p>
-        </body>
-        </html>";
+        // Send email with PHPMailer
+        $mail = new PHPMailer(true);
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'sanodyav@gmail.com'; // your Gmail
+            $mail->Password   = 'pqau amrg zsim mmas'; // your App Password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
 
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: FineMate <no-reply@finemate.com>" . "\r\n";
+            // Recipients
+            $mail->setFrom('sanodyav@gmail.com', 'FineMate Support');
+            $mail->addAddress($email, $user['name']);
 
-        if (mail($email, $subject, $message, $headers)) {
-            $_SESSION['msg'] = "Password reset link sent to your email.";
-        } else {
-            $_SESSION['msg'] = "Failed to send email. Please try again.";
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Password Reset - FineMate';
+            $mail->Body    = "
+                <p>Hi <strong>{$user['name']}</strong>,</p>
+                <p>We received a request to reset your password. Click below to reset it:</p>
+                <p><a href='$reset_link' target='_blank'>$reset_link</a></p>
+                <p>This link will expire in 1 hour.</p>
+                <p>If you didn't request this, please ignore this email.</p>
+                <br>
+                <p>— FineMate Support</p>
+            ";
+
+            $mail->send();
+            $_SESSION['msg'] = "✅ Password reset link sent to your email.";
+        } catch (Exception $e) {
+            $_SESSION['msg'] = "❌ Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-
     } else {
-        $_SESSION['msg'] = "Email address not found.";
+        $_SESSION['msg'] = "❌ Email address not found.";
     }
 
     header("Location: login.php");
