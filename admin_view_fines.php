@@ -27,7 +27,9 @@ try {
 <body>
 <div class="container py-5">
     <h1 class="mb-4">All Fines</h1>
-
+<div class="mb-3">
+        <a href="export_fines_pdf.php" class="btn btn-success">Export as PDF</a>
+    </div>
     <?php if (count($fines) === 0): ?>
         <div class="alert alert-info">No fines found in the system.</div>
     <?php else: ?>

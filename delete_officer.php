@@ -20,7 +20,7 @@ try {
 
     $pdo->commit();
 
-    header("Location: view_all_officers.php?msg=Officer deleted successfully");
+    header("Location: admin_view_officers.php?msg=Officer deleted successfully");
     exit;
 } catch (Exception $e) {
     $pdo->rollBack();
