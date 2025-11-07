@@ -28,15 +28,16 @@
 
           <div class="mb-3">
             <label for="email" class="form-label fw-semibold">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+           <input type="email"  class="form-control" id="email" name="email" value="<?php if(isset($_COOKIE['user_email'])) echo $_COOKIE['user_email']; ?>" placeholder="Enter Your Email">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label fw-semibold">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+           <input type="password" class="form-control" id="password" name="password" value="<?php if(isset($_COOKIE['user_password'])) echo $_COOKIE['user_password']; ?>" placeholder="Enter Your Password">
+
           </div>
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-              <input type="checkbox" id="remember" name="remember">
+              <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE['user_email'])) echo 'checked'; ?>>
               <label for="remember" class="small">Remember me</label>
             </div>
             <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"

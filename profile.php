@@ -38,10 +38,8 @@ $driver = $stmt2->fetch();
 
             <div class="profile-header">
                 <div class="profile-img">
-                    <label for="profile_image">Profile Image</label>
                     <img src="<?php echo !empty($user['image']) ? 'uploads/' . htmlspecialchars($user['image']) : 'img/default_user.png'; ?>"
                         alt="Profile" class="edit-profile-img">
-                    <input type="file" name="profile_image" id="profile_image" accept="image/*">
                 </div>
                 <div class="profile-info">
                     <h2 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h2>
@@ -49,7 +47,7 @@ $driver = $stmt2->fetch();
                     <p class="profile-status <?php echo $user['status'] === 'active' ? 'active' : 'inactive'; ?>">
                         <?php echo ucfirst(htmlspecialchars($user['status'])); ?>
                     </p>
-                    <!-- <a href="edit_profile.php" class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Profile</a> -->
+                    <a href="edit_profile.php" class="edit-btn"><i class="fa-solid fa-pen"></i> Edit Profile</a>
                 </div>
             </div>
 

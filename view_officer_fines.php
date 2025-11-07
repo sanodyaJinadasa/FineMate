@@ -49,6 +49,7 @@ try {
                         <th>Payment Status</th>
                         <th>Due Date</th>
                         <th>Remarks</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +69,11 @@ try {
                             <td><?= htmlspecialchars($fine['payment_status']) ?></td>
                             <td><?= htmlspecialchars($fine['due_date']) ?></td>
                             <td><?= htmlspecialchars($fine['remarks']) ?></td>
+                            <td><a href="download_fine_pdf.php?fine_id=<?= $fine['fine_id'] ?>" class="btn btn-danger btn-sm">
+    <i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
+</a>
+
+</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -77,5 +83,9 @@ try {
 </div>
 
 <?php include 'footer.php'; ?>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </body>
 </html>

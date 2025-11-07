@@ -2,12 +2,10 @@
 session_start();
 require 'db_connect.php';
 
-// Ensure only logged-in officers can access
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'officer') {
     die("Unauthorized access.");
 }
 
-// Officer info from session
 $officer_id = $_SESSION['user_id'];
 
 $offender_name = trim($_POST['offender_name'] ?? '');
