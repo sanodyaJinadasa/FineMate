@@ -9,11 +9,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 $admin_name = $_SESSION['name'];
 
+// Fetch all drivers
 try {
-    // Fetch all users with role = 'driver' and join driver details
     $stmt = $pdo->query("
         SELECT u.user_id, u.name, u.email, u.status AS user_status, u.created_at AS user_created_at, 
-               d.license_no, d.nic, d.address, d.contact_no, d.total_points, d.status AS driver_status, d.created_at AS driver_created_at
+               d.license_no, d.nic, d.address, d.contact_no, d.total_points, 
+               d.status AS driver_status, d.created_at AS driver_created_at
         FROM users u
         JOIN drivers d ON u.user_id = d.user_id
         WHERE u.role = 'driver'
@@ -33,13 +34,18 @@ try {
 </head>
 <body>
 <div class="container py-5">
-    <h1 class="mb-4">All Drivers</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>All Drivers</h1>
+        <a href="export_drivers_pdf.php" class="btn btn-success">
+            <i class="bi bi-file-earmark-pdf"></i> Export PDF
+        </a>
+    </div>
 
     <?php if (count($drivers) === 0): ?>
         <div class="alert alert-info">No drivers found in the system.</div>
     <?php else: ?>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
@@ -66,11 +72,21 @@ try {
                             <td><?= htmlspecialchars($driver['address']) ?></td>
                             <td><?= htmlspecialchars($driver['contact_no']) ?></td>
                             <td><?= htmlspecialchars($driver['total_points']) ?></td>
-                            <td><?= htmlspecialchars($driver['driver_status']) ?></td>
+                            <td>
+                                <?php if ($driver['driver_status'] == 'active'): ?>
+                                    <span class="badge bg-success">Active</span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary">Inactive</span>
+                                <?php endif; ?>
+                            </td>
                             <td><?= htmlspecialchars($driver['driver_created_at']) ?></td>
                             <td>
                                 <a href="edit_driver.php?user_id=<?= $driver['user_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="delete_driver.php?user_id=<?= $driver['user_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this driver?');">Delete</a>
+                                <a href="delete_driver.php?user_id=<?= $driver['user_id'] ?>" 
+                                   class="btn btn-sm btn-danger" 
+                                   onclick="return confirm('Are you sure you want to delete this driver?');">
+                                   Delete
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -79,5 +95,8 @@ try {
         </div>
     <?php endif; ?>
 </div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </body>
 </html>
