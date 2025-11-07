@@ -7,6 +7,31 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Unauthorized access.");
 }
 
+$stmt = $pdo->query("SELECT COUNT(*) AS total_messages FROM contact_messages");
+$totalMessages = $stmt->fetch(PDO::FETCH_ASSOC)['total_messages'];
+
+// Get messages per day (for last 7 days)
+$stmt = $pdo->query("
+    SELECT DATE(created_at) AS date, COUNT(*) AS count
+    FROM contact_messages
+    WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+    GROUP BY DATE(created_at)
+    ORDER BY date ASC
+");
+$messageData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Prepare data for Chart.js
+$dates = [];
+$counts = [];
+foreach ($messageData as $row) {
+    $dates[] = $row['date'];
+    $counts[] = $row['count'];
+}
+
+// Convert to JSON
+$datesJson = json_encode($dates);
+$countsJson = json_encode($counts);
+
 $admin_name = $_SESSION['name'];
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,9 @@
 session_start();
 require 'db_connect.php';
 
+// Fetch all messages
 $stmt = $pdo->prepare("SELECT * FROM contact_messages ORDER BY created_at DESC");
+$stmt->execute(); // ✅ Execute before fetching
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -14,29 +16,34 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="bg-light">
 <div class="container mt-5">
-  <h3>Contact Messages</h3>
-  <table class="table table-bordered table-striped mt-3">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Message</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($messages as $msg): ?>
+  <h3 class="mb-4">Contact Messages</h3>
+
+  <?php if (count($messages) > 0): ?>
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
         <tr>
-          <td><?= $msg['id'] ?></td>
-          <td><?= htmlspecialchars($msg['name']) ?></td>
-          <td><?= htmlspecialchars($msg['email']) ?></td>
-          <td><?= nl2br(htmlspecialchars($msg['message'])) ?></td>
-          <td><?= $msg['created_at'] ?></td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <?php foreach ($messages as $msg): ?>
+          <tr>
+            <td><?= htmlspecialchars($msg['id']) ?></td>
+            <td><?= htmlspecialchars($msg['name']) ?></td>
+            <td><?= htmlspecialchars($msg['email']) ?></td>
+            <td><?= nl2br(htmlspecialchars($msg['message'])) ?></td>
+            <td><?= htmlspecialchars($msg['created_at']) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+    <div class="alert alert-info">No messages found.</div>
+  <?php endif; ?>
 </div>
 </body>
 </html>
