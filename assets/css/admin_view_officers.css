@@ -1,0 +1,197 @@
+:root {
+    --accent: #4e9eff;
+    --accent2: #9c6bff;
+}
+
+body {
+    background: linear-gradient(135deg, #050f13, #172f37, #02adc8);
+    color: #e4e6eb;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff; 
+    margin: 10px auto; 
+    padding: 12px 25px;
+    display: block; 
+    position: relative;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7); 
+    transition: all 0.3s ease;
+    text-align: center; 
+}
+
+.btn1 {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    text-decoration: none;
+    padding: 5px 20px;
+    border: none;
+    font-weight: 500;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+.btn1:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 18px rgba(78, 158, 255, 0.4);
+}
+
+.btn1:active {
+    transform: scale(0.97);
+}
+
+.btn1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: skewX(-45deg);
+    transition: all 0.6s ease;
+}
+
+.btn1:hover::after {
+    left: 100%;
+}
+
+.btn-success, .btn-warning, .btn-danger, .btn-secondary {
+    border-radius: 30px;
+    font-weight: 600;
+    padding: 6px 15px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #71dd8a);
+    border: none;
+    color: #fff;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.7);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107, #ffd657);
+    border: none;
+    color: #222;
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.7);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #e66773);
+    border: none;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.7);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    border: none;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1c21;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+thead.table-dark {
+    background: linear-gradient(90deg, #4e9eff, #9c6bff);
+    color: #fff;
+}
+
+thead.table-dark th {
+    font-weight: 600;
+    text-align: center;
+}
+
+tbody tr {
+    transition: all 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #22252b;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #1d1f24;
+}
+
+tbody tr:hover {
+    background-color: #4e9eff33; 
+    transform: scale(1.01);
+}
+
+td, th {
+    text-align: center;
+    padding: 10px;
+    color: #e4e6eb;
+    font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4e9eff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #9c6bff;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #0f1115;
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 1.6rem;
+    }
+
+    td, th {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .btn-success {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+}
