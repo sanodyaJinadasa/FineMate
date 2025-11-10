@@ -12,6 +12,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <title>View Messages</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
 <body class="bg-light">
 <div class="container mt-5">
