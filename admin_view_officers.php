@@ -40,12 +40,13 @@ try {
     <meta charset="UTF-8">
     <title>All Officers - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin_view_officers.css">
 </head>
 <body>
 <div class="container py-5">
+    <h1>All Officers</h1>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>All Officers</h1>
-        <a href="export_officers_pdf.php" class="btn btn-success">Export to PDF</a>
+        <a href="export_officers_pdf.php" class="btn1">Export to PDF</a>
     </div>
 
     <?php if (isset($_GET['msg'])): ?>
