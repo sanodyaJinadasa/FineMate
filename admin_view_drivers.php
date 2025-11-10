@@ -31,11 +31,12 @@ try {
     <meta charset="UTF-8">
     <title>All Drivers - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
 <body>
 <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>All Drivers</h1>
+    <h1>All Drivers</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">    
         <a href="export_drivers_pdf.php" class="btn btn-success">
             <i class="bi bi-file-earmark-pdf"></i> Export PDF
         </a>
