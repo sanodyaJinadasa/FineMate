@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     color: #222;
     scroll-behavior: smooth;
-    background: #0e1117 url('img/home_bg1.jpg');
+    background: #0e1117 url('../../img/home_bg1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -713,9 +713,17 @@ footer a:hover {
   margin-bottom: 20px;
 }
 
+.profile{
+    color: white;
+}
+
+.profile label{
+    color: white;
+}
+
 .about-description {
   font-size: 1.1rem;
-  color: #555;
+  color: #ffffff;
   max-width: 750px;
   margin: 0 auto 50px;
   line-height: 1.6;

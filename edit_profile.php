@@ -36,7 +36,7 @@ if ($role === 'driver') {
 <div class="container py-5">
     <h2>Edit Profile</h2>
 
-    <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+    <form action="update_profile.php" method="POST" enctype="multipart/form-data" class="profile">
         <div class="mb-3">
             <label for="name">Full Name</label>
             <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" class="form-control" required>

@@ -2,7 +2,7 @@
 session_start();
 require 'db_connect.php';
 
-// Only logged-in admins
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Unauthorized access.");
 }
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 $stmt = $pdo->query("SELECT COUNT(*) AS total_messages FROM contact_messages");
 $totalMessages = $stmt->fetch(PDO::FETCH_ASSOC)['total_messages'];
 
-// Get messages per day (for last 7 days)
+
 $stmt = $pdo->query("
     SELECT DATE(created_at) AS date, COUNT(*) AS count
     FROM contact_messages
