@@ -2,9 +2,9 @@
 
 :root {
     --bg-main: #0f1115;
-    --bg-card: #1b1d225b;
+    --bg-card: #1b1d22a8;
     --bg-hover: #24262b;
-    --text-light: #f1f3f6;
+    --text-light: #02273a;
     --text-muted: #a8abb0;
     --accent: #4e9eff;
     --accent2: #9c6bff;
@@ -13,9 +13,13 @@
     --radius: 14px;
 }
 
-/* ===== BODY ===== */
 body {
-    background: linear-gradient(135deg, #050f13, #132227, #035575);
+    /* image path is relative to this CSS file (assets/css/) -> go up two levels to project root */
+    background: #0e1117 url('../../img/dashboard_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--text-light);
     font-family: 'Inter', 'Segoe UI', sans-serif;
     min-height: 100vh;
@@ -23,6 +27,7 @@ body {
     margin: 0;
     animation: fadeIn 0.6s ease-in-out;
 }
+
 
 /* ===== NAVBAR ===== */
 .navbar {
@@ -37,7 +42,7 @@ body {
 
 .navbar-brand {
     font-weight: 600;
-    color: var(--accent) !important;
+    color: white !important;
     transition: color 0.3s ease;
 }
 
@@ -56,8 +61,8 @@ body {
 
 /* ===== PAGE TITLE ===== */
 .container h1 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 3rem;
+    font-weight: 700;
     color: var(--text-light);
     margin-bottom: 1rem;
     position: relative;
@@ -115,7 +120,7 @@ body {
 /* ===== CARD DESIGN ===== */
 .card {
     background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 2px solid black;
     padding: 15px 10px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -146,7 +151,7 @@ body {
 }
 
 .card-title {
-    color: var(--text-light);
+    color: white;
     font-weight: 600;
     font-size: 1.2rem;
     transition: color 0.3s ease;
@@ -158,6 +163,24 @@ body {
 
 .card-text {
     color: var(--text-muted);
+}
+
+/* ===== Footer ===== */
+footer {
+    background: #16191e;
+    color: #fff;
+    text-align: center;
+    padding: 25px 10px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #ffe15d;
+    margin: 0 8px;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /* ===== RESPONSIVE GRID ===== */
