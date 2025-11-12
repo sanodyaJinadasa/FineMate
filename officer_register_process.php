@@ -3,7 +3,7 @@ session_start();
 require 'db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: officer_register_form.html');
+    header('Location: officer_register.php');
     exit;
 }
 
@@ -17,37 +17,49 @@ $contact_no = trim($_POST['contact_no'] ?? '');
 $station = trim($_POST['station'] ?? '');
 $rank = trim($_POST['rank'] ?? '');
 
-$errors = [];
-if ($name === '') $errors[] = 'Name is required.';
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Valid email required.';
-if (strlen($password) < 6) $errors[] = 'Password must be at least 6 characters.';
-if ($badge_no === '') $errors[] = 'Badge number required.';
-
-if (!empty($errors)) { die($errors[0]); }
-
 try {
+    // Basic validation
+    if ($name === '') throw new Exception('Name is required.');
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new Exception('Valid email required.');
+    if (strlen($password) < 6) throw new Exception('Password must be at least 6 characters.');
+    if ($badge_no === '') throw new Exception('Badge number required.');
+
+    // Check for duplicates
     $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
     $stmt->execute([$email]);
-    if ($stmt->fetch()) die('Email already registered.');
+    if ($stmt->fetch()) throw new Exception('Email already registered.');
 
     $stmt = $pdo->prepare("SELECT officer_id FROM officers WHERE badge_no = ?");
     $stmt->execute([$badge_no]);
-    if ($stmt->fetch()) die('Badge number already registered.');
+    if ($stmt->fetch()) throw new Exception('Badge number already registered.');
 
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
+    // Insert data
     $pdo->beginTransaction();
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, 'officer', 'inactive')");
     $stmt->execute([$name, $email, $hashed]);
     $user_id = $pdo->lastInsertId();
 
-    $stmt = $pdo->prepare("INSERT INTO officers (user_id, badge_no, station, contact_no, rank) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$user_id, $badge_no, $station, $contact_no, $rank]);
+    $stmt = $pdo->prepare("INSERT INTO officers (user_id, badge_no, station, contact_no, rank, nic, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$user_id, $badge_no, $station, $contact_no, $rank, $nic, $address]);
 
     $pdo->commit();
 
-   header('Location: home_page.php'); 
+    $_SESSION['alert'] = [
+        'type' => 'success',
+        'message' => 'Registration successful! Wait for admin approval before logging in.'
+    ];
+
+    header('Location: officer_register.php');
+    exit;
+
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
-    die("Registration failed: " . $e->getMessage());
+    $_SESSION['alert'] = [
+        'type' => 'error',
+        'message' => $e->getMessage()
+    ];
+    header('Location: officer_register.php');
+    exit;
 }

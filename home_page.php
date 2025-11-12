@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,6 +102,22 @@ session_start();
   <?php include 'footer.php'; ?>
 
 </body>
+
+  <?php
+  if (isset($_SESSION['alert'])) {
+      $alert = $_SESSION['alert'];
+      echo "<script>
+          Swal.fire({
+              icon: '{$alert['type']}',
+              title: '".ucfirst($alert['type'])."',
+              text: '{$alert['message']}',
+              confirmButtonColor: '#3085d6',
+          });
+      </script>";
+      unset($_SESSION['alert']);
+  }
+  ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <script>

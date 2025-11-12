@@ -1,3 +1,7 @@
+
+  <?php
+  session_start();
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +9,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -87,8 +93,25 @@
     </div>
   </div>
 
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+   <?php
+  if (isset($_SESSION['alert'])) {
+      $alert = $_SESSION['alert'];
+      echo "<script>
+      document.addEventListener('DOMContentLoaded', function() {
+          Swal.fire({
+              icon: '{$alert['type']}',
+              title: '".ucfirst($alert['type'])."',
+              text: '{$alert['message']}',
+              confirmButtonColor: '#3085d6',
+          });
+      });
+      </script>";
+      unset($_SESSION['alert']);
+  }
+  ?>
 
 </body>
 

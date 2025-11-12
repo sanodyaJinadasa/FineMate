@@ -1,12 +1,14 @@
 <?php
+// driver_register_process.php
 session_start();
-require 'db_connect.php';
+require 'db_connect.php'; // must provide $pdo (PDO) and use exceptions
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: driver_register_form.html');
+    header('Location: driver_register.php');
     exit;
 }
 
+// Collect input (trim where appropriate)
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -15,28 +17,50 @@ $nic = trim($_POST['nic'] ?? '');
 $address = trim($_POST['address'] ?? '');
 $contact_no = trim($_POST['contact_no'] ?? '');
 
-$errors = [];
-if ($name === '') $errors[] = 'Name is required.';
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Valid email required.';
-if (strlen($password) < 6) $errors[] = 'Password must be at least 6 characters.';
-if ($license_no === '') $errors[] = 'License number required.';
+// Helper to set session alert and redirect back to form
+function set_alert_and_redirect($type, $message, $redirect = 'driver_register.php') {
+    $_SESSION['alert'] = [
+        'type' => $type,
+        'message' => $message,
+    ];
+    if ($redirect) $_SESSION['alert']['redirect'] = $redirect;
+    header('Location: driver_register.php');
+    exit;
+}
 
-if (!empty($errors)) {
-    die($errors[0]);
+// Basic validation
+if ($name === '') {
+    set_alert_and_redirect('error', 'Name is required.');
+}
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    set_alert_and_redirect('error', 'Valid email is required.');
+}
+if (strlen($password) < 6) {
+    set_alert_and_redirect('error', 'Password must be at least 6 characters.');
+}
+if ($license_no === '') {
+    set_alert_and_redirect('error', 'License number is required.');
 }
 
 try {
+    // Check for existing email
     $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
     $stmt->execute([$email]);
-    if ($stmt->fetch()) die('Email already registered.');
+    if ($stmt->fetch()) {
+        set_alert_and_redirect('error', 'Email already registered.');
+    }
 
+    // Check for existing license number
     $stmt = $pdo->prepare("SELECT driver_id FROM drivers WHERE license_no = ?");
     $stmt->execute([$license_no]);
-    if ($stmt->fetch()) die('License number already registered.');
+    if ($stmt->fetch()) {
+        set_alert_and_redirect('error', 'License number already registered.');
+    }
 
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
+    // All good — insert within a transaction
     $pdo->beginTransaction();
 
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, 'driver', 'active')");
     $stmt->execute([$name, $email, $hashed]);
     $user_id = $pdo->lastInsertId();
@@ -46,13 +70,26 @@ try {
 
     $pdo->commit();
 
+    // Set session for logged-in user if you want them auto-logged-in
     $_SESSION['user_id'] = $user_id;
     $_SESSION['role'] = 'driver';
     $_SESSION['name'] = $name;
 
-    header('Location: home_page.php'); 
+    // Success alert — redirect to home_page.php after showing alert on the form page
+    $_SESSION['alert'] = [
+        'type' => 'success',
+        'message' => "Registration successful! Welcome, " . $name . ".",
+        // We'll instruct the form page to redirect to home_page.php after the alert
+        'redirect' => 'home_page.php'
+    ];
+
+    // Redirect back to form page which shows SweetAlert then navigates
+    header('Location: driver_register.php');
     exit;
+
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
-    die("Registration failed: " . $e->getMessage());
+    // Log the error server-side if you have logging; do not expose raw SQL errors to users in production
+    $msg = 'Registration failed: ' . $e->getMessage();
+    set_alert_and_redirect('error', $msg);
 }

@@ -9,27 +9,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="assets/css/officer_reg.css">
+
+  <!-- ✅ Include SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
   <div class="d-flex justify-content-center align-items-center vh-100">
-
     <div class="container-box d-flex">
-
       <div class="left-panel">
         <div class="overlay">
           <h1 class="fw-bold">Officer Registration</h1>
-          <p>Join the FineMate enforcement system by registering your officer account. Securely track fines, validate driver records, and ensure transparent and efficient traffic law enforcement at all times.</p>
+          <p>Join the FineMate enforcement system by registering your officer account.</p>
         </div>
       </div>
 
       <div class="right-panel d-flex flex-column justify-content-center p-5">
-        
         <h2 class="mb-4 fw-semibold text-center">Register</h2>
-      <form action="officer_register_process.php" method="POST">
 
-
-
+        <form action="officer_register_process.php" method="POST">
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
             <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
@@ -83,5 +80,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <?php
+  session_start();
+  if (isset($_SESSION['alert'])) {
+      $alert = $_SESSION['alert'];
+      echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+          Swal.fire({
+            icon: '{$alert['type']}',
+            title: '".ucfirst($alert['type'])."',
+            text: '{$alert['message']}',
+            confirmButtonColor: '#3085d6'
+          });
+        });
+      </script>";
+      unset($_SESSION['alert']);
+  }
+  ?>
 </body>
 </html>
