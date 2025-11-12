@@ -45,21 +45,41 @@ $admin_name = $_SESSION['name'];
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Admin Dashboard</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="nav-link">Welcome, <?= htmlspecialchars($admin_name) ?></span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+ <nav class="navbar">
+    <div class="logo">
+      <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">
+      <span>FineMate</span>
+    </div>
+    <ul>
+      <li><a href="home_page.php">Home</a></li>
+
+     <?php if (isset($_SESSION['role'])): ?>
+        <?php if ($_SESSION['role'] === 'driver'): ?>
+            <li><a href="view_driver_fines.php">View Fines</a></li>
+        <?php elseif ($_SESSION['role'] === 'officer'): ?>
+            <li><a href="view_officer_fines.php">View Fines</a></li>
+            <li><a href="fine_form.php">Add Fines</a></li>
+        <?php endif; ?>
+    <?php endif; ?>
+
+
+      <li><a href="home_page.php#about-section">About</a></li>
+      <li><a href="home_page.php#contact-section">Contact</a></li>
+
+      <li class="user-menu">
+      <span class="user-icon">&#128100;</span>
+      <div class="dropdown user-dropdown">
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['name'])): ?>
+          <p><?php echo htmlspecialchars($_SESSION['name']); ?></p>
+          <a href="profile.php">Profile</a>
+          <a href="logout.php">Logout</a>
+        <?php else: ?>
+          <a href="login.php">Login</a>
+        <?php endif; ?>
+      </div>
+    </li>
+    </ul>
+  </nav>
 
     <div class="container py-5">
         <h1 class="mb-4">Admin Dashboard</h1>
