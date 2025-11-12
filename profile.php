@@ -60,7 +60,7 @@ $driver = $stmt2->fetch();
                 </div>
 
                 <?php if ($driver): ?>
-                    <h3 class="details-title"><i class="fa-solid fa-id-card"></i> Driver Information</h3>
+                    <!-- <h3 class="details-title"><i class="fa-solid fa-id-card"></i> Driver Information</h3> -->
                     <div class="details-grid">
                         <p><strong>License No:</strong> <?php echo htmlspecialchars($driver['license_no']); ?></p>
                         <p><strong>NIC:</strong> <?php echo htmlspecialchars($driver['nic']); ?></p>

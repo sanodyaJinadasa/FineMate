@@ -28,11 +28,32 @@ if (!$fine) {
 <head>
     <title>Pay Fine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 </head>
 <body class="bg-light">
 
 <div class="container mt-5">
     <div class="card shadow-lg">
+
+
+
+    <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
+    <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+    <input type="hidden" name="return_url" value="http://yourwebsite.com/payment-success.php">
+    <input type="hidden" name="cancel_url" value="http://yourwebsite.com/payment-cancel.php">
+    <input type="hidden" name="notify_url" value="http://yourwebsite.com/ipn.php">
+
+    <input type="hidden" name="order_id" value="ORDER1234">
+    <input type="hidden" name="items" value="Test Item">
+    <input type="hidden" name="currency" value="LKR">
+    <input type="hidden" name="amount" value="100.00">
+
+    <input type="submit" value="Pay Now">
+</form>
+
+
+
+
         <div class="card-header bg-primary text-white">
             <h4>Pay Fine - #<?= htmlspecialchars($fine['fine_id']) ?></h4>
         </div>

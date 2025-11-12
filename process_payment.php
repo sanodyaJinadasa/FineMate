@@ -9,6 +9,21 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+define('ENCRYPTION_KEY', 'a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6');
+define('ENCRYPTION_METHOD', 'AES-256-CBC');
+
+
+$data = $_POST;
+file_put_contents('ipn_log.txt', print_r($data, true), FILE_APPEND);
+
+
+function encryptData($data)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(ENCRYPTION_METHOD));
+    $encrypted = openssl_encrypt($data, ENCRYPTION_METHOD, ENCRYPTION_KEY, 0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fine_id = $_POST['fine_id'];
     $amount = $_POST['amount'];
@@ -18,62 +33,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cvv = trim($_POST['cvv']);
 
     if (empty($card_holder_name) || empty($card_number) || empty($expiry_date) || empty($cvv)) {
-        die("Please fill in all fields.");
-    }
+        $error_msg = "Please fill in all required fields.";
+        $icon = 'error';
+        $redirect = 'window.history.back();';
+    } else {
+        // Encrypt data
+        $card_holder_name_enc = encryptData($card_holder_name);
+        $card_number_enc = encryptData($card_number);
+        $expiry_date_enc = encryptData($expiry_date);
+        $cvv_enc = encryptData($cvv);
 
-    try {
-        // Save payment
-        $stmt = $pdo->prepare("
-            INSERT INTO payments (fine_id, user_id, card_holder_name, card_number, expiry_date, cvv, amount, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, 'Paid')
-        ");
-        $stmt->execute([$fine_id, $user_id, $card_holder_name, $card_number, $expiry_date, $cvv, $amount]);
+        try {
+            // Save payment
+            $stmt = $pdo->prepare("
+                INSERT INTO payments (fine_id, user_id, card_holder_name, card_number, expiry_date, cvv, amount, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'Paid')
+            ");
+            $stmt->execute([
+                $fine_id,
+                $user_id,
+                $card_holder_name_enc,
+                $card_number_enc,
+                $expiry_date_enc,
+                $cvv_enc,
+                $amount
+            ]);
 
-        // Update fine status
-        $update = $pdo->prepare("UPDATE fines SET payment_status = 'Paid' WHERE fine_id = ?");
-        $update->execute([$fine_id]);
+            $update = $pdo->prepare("UPDATE fines SET payment_status = 'Paid' WHERE fine_id = ?");
+            $update->execute([$fine_id]);
 
-        // Fetch offender email
-        $userStmt = $pdo->prepare("SELECT name, email FROM users WHERE user_id = ?");
-        $userStmt->execute([$user_id]);
-        $user = $userStmt->fetch(PDO::FETCH_ASSOC);
+            $error_msg = "Payment successful! Confirmation email sent.";
+            $icon = 'success';
+            $redirect = "window.location.href='view_driver_fines.php';";
 
-        if ($user && !empty($user['email'])) {
-            $to = $user['email'];
-            $subject = "Payment Confirmation - Fine ID #$fine_id";
-            $message = "
-            <html>
-            <head><title>Fine Payment Confirmation</title></head>
-            <body style='font-family: Arial, sans-serif;'>
-                <h2 style='color:#2b7cff;'>Fine Payment Successful</h2>
-                <p>Dear " . htmlspecialchars($user['name']) . ",</p>
-                <p>Your payment for <strong>Fine ID #$fine_id</strong> has been successfully received.</p>
-                <p><strong>Amount Paid:</strong> Rs. " . htmlspecialchars($amount) . ".00</p>
-                <p>Payment Status: <span style='color:green;'>Paid</span></p>
-                <hr>
-                <p>Thank you for settling your fine promptly.</p>
-                <p>— FineMate System</p>
-            </body>
-            </html>";
-
-            $headers  = "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8\r\n";
-            $headers .= "From: FineMate <no-reply@finemate.com>\r\n";
-
-            // Send email
-            @mail($to, $subject, $message, $headers);
+        } catch (PDOException $e) {
+            $error_msg = "Payment failed: " . $e->getMessage();
+            $icon = 'error';
+            $redirect = 'window.history.back();';
         }
-
-        echo "<script>
-                alert('Payment successful! Confirmation email sent.');
-                window.location.href='view_driver_fines.php';
-              </script>";
-
-    } catch (PDOException $e) {
-        echo "<script>
-                alert('Payment failed: " . addslashes($e->getMessage()) . "');
-                window.history.back();
-              </script>";
     }
+} else {
+    $error_msg = "Invalid request.";
+    $icon = 'error';
+    $redirect = 'window.history.back();';
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: '<?= $icon ?>',
+                title: '<?= $icon === "success" ? "Success" : "Oops!" ?>',
+                text: '<?= addslashes($error_msg) ?>',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                <?= $redirect ?>
+            });
+        });
+    </script>
+</body>
+
+</html>

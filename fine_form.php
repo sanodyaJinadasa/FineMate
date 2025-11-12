@@ -125,5 +125,54 @@
         </footer>
     </div>
     <!-- <?php include 'footer.php'; ?> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('form').submit(function(e) {
+        e.preventDefault(); // prevent normal form submission
+
+        $.ajax({
+            url: 'process_fine.php',
+            method: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: response.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    // Reset form if needed
+                    $('form')[0].reset();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message
+                    });
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Something went wrong. Try again!'
+                });
+            }
+        });
+    });
+});
+</script>
+
+
+
 </body>
 </html>
