@@ -42,25 +42,10 @@ try {
      <link rel="stylesheet" href="assets/css/home.css">
 </head>
 
-<style>
-    body {
- background: #0e1117 url('img/white-trianglify.jpg') !important;
-    background-size: cover !important;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: var(--text-light);
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    margin: 0;
-    animation: fadeIn 0.6s ease-in-out;
-}
-</style>
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="container py-5">
+    <div class="container" style="background-color: #f9f9f9;padding: 80px;">
         <h1 class="mb-4">My Fines</h1>
 
         <?php if (count($fines) === 0): ?>
@@ -70,7 +55,7 @@ try {
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>#d</th>
+                            <th>#</th>
                             <th>Fine Type</th>
                             <th>Amount (Rs)</th>
                             <th>Date</th>

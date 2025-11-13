@@ -36,7 +36,7 @@ if (!$fine) {
  <?php include 'header.php'; ?>
 
     <div class="container mt-5  payment-container">
-        <div class="card shadow-lg pay-card">
+        <div class="shadow-lg pay-card">
 
 
 

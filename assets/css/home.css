@@ -31,6 +31,16 @@ img {
 .pay-card {
     width: 600px !important;
     border-radius: 15px;
+    background: #d0d0d0ff;
+    padding: 50px 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .navbar {
