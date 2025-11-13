@@ -34,6 +34,8 @@ try {
     <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
 <body>
+
+<?php include 'admin_header.php'; ?>
 <div class="container py-5">
     <h1>All Drivers</h1>
     <div class="d-flex justify-content-between align-items-center mb-4">    
@@ -96,7 +98,7 @@ try {
         </div>
     <?php endif; ?>
 </div>
-
+   <?php include 'admin_footer.php'; ?>
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </body>

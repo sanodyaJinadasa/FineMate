@@ -43,6 +43,7 @@ try {
     <link rel="stylesheet" href="assets/css/admin_view_officers.css">
 </head>
 <body>
+<?php include 'admin_header.php'; ?>
 <div class="container py-5">
     <h1>All Officers</h1>
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -107,5 +108,6 @@ try {
         </div>
     <?php endif; ?>
 </div>
+<?php include 'admin_footer.php'; ?>
 </body>
 </html>

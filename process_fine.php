@@ -68,7 +68,6 @@ try {
         $remarks
     ]);
 
-    // Deduct 10 points from offender (assuming `offender_points` table)
     $stmt2 = $pdo->prepare("UPDATE drivers SET total_points = total_points - 10 WHERE nic = ?");
     $stmt2->execute([$offender_nic]);
 

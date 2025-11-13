@@ -342,3 +342,19 @@ footer a:hover {
     from { opacity: 0; transform: translateY(-15px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+
+
+
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-link img {
+    margin-right: 8px;
+}

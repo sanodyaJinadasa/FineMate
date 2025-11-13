@@ -15,6 +15,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
 <body class="bg-light">
+<?php include 'admin_header.php'; ?>
 <div class="container mt-5">
   <h3 class="mb-4">Contact Messages</h3>
 
@@ -45,5 +46,6 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="alert alert-info">No messages found.</div>
   <?php endif; ?>
 </div>
+<?php include 'admin_footer.php'; ?>
 </body>
 </html>

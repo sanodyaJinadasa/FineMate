@@ -58,24 +58,7 @@ $weather_data = $stmt4->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="assets/css/all_fines.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<div class="container">
-		<a class="navbar-brand" href="admin_dashboard.php">Admin Dashboard</a>
-		<div class="collapse navbar-collapse">
-			<ul class="navbar-nav ms-auto">
-				<li class="nav-item d-flex align-items-center me-2">
-					<button id="themeToggle" class="btn btn-sm btn-warning" type="button" title="Toggle theme">🌓</button>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="admin_dashboard.php">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="logout.php">Logout</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
+<?php include 'admin_header.php'; ?>
 <div class="container py-5">
     <h1 class="mb-4">Fines Dashboard</h1>
 
@@ -88,28 +71,28 @@ $weather_data = $stmt4->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Chart Section -->
     <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card p-3 shadow">
                 <h5 class="text-center">Monthly Total Fines</h5>
                 <canvas id="chartMonthly"></canvas>
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card p-3 shadow">
                 <h5 class="text-center">Fines by Type</h5>
                 <canvas id="chartType"></canvas>
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card p-3 shadow">
                 <h5 class="text-center">Payment Status</h5>
                 <canvas id="chartPayment"></canvas>
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card p-3 shadow">
                 <h5 class="text-center">Fines by Weather</h5>
                 <canvas id="chartWeather"></canvas>
@@ -117,6 +100,7 @@ $weather_data = $stmt4->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
+    <? include 'admin_footer.php'; ?>
 
     <script>
 const monthlyLabels = <?= json_encode(array_column($monthly_data, 'month')) ?>;

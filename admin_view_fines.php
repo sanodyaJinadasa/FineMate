@@ -26,6 +26,7 @@ try {
     <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
 <body>
+<?php include 'admin_header.php'; ?>
 <div class="container py-5">
     <h1 class="mb-4">All Fines</h1>
 <div class="mb-3">
@@ -80,5 +81,6 @@ try {
         </div>
     <?php endif; ?>
 </div>
+<?php include 'admin_footer.php'; ?>
 </body>
 </html>
