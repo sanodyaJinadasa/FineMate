@@ -12,7 +12,7 @@
 
 
     <ul>
-        <li><a href="admin_dashboard.php">Home</a></li>
+        <li><a href="admin_dashboard.php">Dashboard</a></li>
         <li><a href="all_fines.php">Chart Analysis</a></li>
         <li><a href="admin_view_fines.php">Fines</a></li>
         <li><a href="admin_view_officers.php">Officers</a></li>
