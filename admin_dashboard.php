@@ -44,8 +44,8 @@ $admin_name = $_SESSION['name'];
 
 <style>
     body {
-    background: #0e1117 url('assets/img/dashboard_background.jpg') !important;
-    background-size: cover;
+ background: #0e1117 url('img/dashboard_background.jpg') !important;
+    background-size: cover !important;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

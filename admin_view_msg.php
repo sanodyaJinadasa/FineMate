@@ -17,7 +17,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="bg-light">
 <?php include 'admin_header.php'; ?>
 <div class="container mt-5">
-  <h3 class="mb-4">Contact Messages</h3>
+  <h1 class="mb-4">Contact Messages</h1>
 
   <?php if (count($messages) > 0): ?>
     <table class="table table-bordered table-striped">
