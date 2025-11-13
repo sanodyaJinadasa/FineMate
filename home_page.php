@@ -51,6 +51,43 @@ app.post('/location', async (req, res) => {
 
 </script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // call this where appropriate (e.g., after user clicks a button or on load)
+  function sendLocationToServer(latitude, longitude) {
+    fetch('save_location.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ latitude, longitude })
+    })
+    .then(r => r.json())
+    .then(data => {
+      console.log('Server response:', data);
+      // optionally show a toast / update UI
+    })
+    .catch(err => console.error('Error sending location:', err));
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        sendLocationToServer(lat, lng);
+      },
+      error => {
+        console.warn('Geolocation error', error);
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  } else {
+    alert('Geolocation is not supported by this browser.');
+  }
+});
+</script>
+
+
   <section class="hero">
     <div class="hero-text">
       <h1>Traffic Fine Management System</h1>
