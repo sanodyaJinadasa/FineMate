@@ -4,9 +4,10 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Driver Registration</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +18,7 @@ session_start();
   <!-- Load SweetAlert2 before any script that uses Swal -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
 
   <div class="d-flex justify-content-center align-items-center vh-100">
@@ -24,7 +26,8 @@ session_start();
       <div class="left-panel">
         <div class="overlay">
           <h1 class="fw-bold">Driver Registration</h1>
-          <p>Securely register your account to access the Official FineMate platform. Track fines, verify records, and stay informed about your driving compliance at all times.</p>
+          <p>Securely register your account to access the Official FineMate platform. Track fines, verify records, and
+            stay informed about your driving compliance at all times.</p>
         </div>
       </div>
 
@@ -54,17 +57,44 @@ session_start();
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-            <input type="text" class="form-control" id="license_no" name="license_no" placeholder="License Number" required>
+            <input type="text" class="form-control" id="license_no" name="license_no" placeholder="License Number"
+              required>
           </div>
+
+          <!-- <div class="mb-3 input-group">
+            <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+            <a href="view_location.php" class="btn btn-secondary" target="_blank"
+              onclick="window.open('view_location.php', 'selectLocation', 'width=800,height=600'); return false;">
+              Select Location
+            </a>
+
+          </div> -->
+
+          
+    <!-- <p id="status">Detecting your current location...</p>
+    <p id="address">Detected Address: Loading...</p>
+    <div id="map"></div>
+
+    <input type="hidden" name="latitude" id="latitude">
+    <input type="hidden" name="longitude" id="longitude">
+    <input type="hidden" name="address" id="hidden_address"> -->
+
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
             <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+            <a href="view_location.php" class="btn btn-secondary"
+              onclick="window.open('view_location.php', 'selectLocation', 'width=800,height=600'); return false;">
+              Select Location
+            </a>
           </div>
+
 
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-            <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" required>
+            <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number"
+              required>
           </div>
 
           <button type="submit" class="btn btn-primary w-100">REGISTER</button>
@@ -80,37 +110,34 @@ session_start();
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- SweetAlert display: reads session alert and shows it -->
-  <?php if (!empty($_SESSION['alert'])): 
-      // Expect session alert to be array with keys: type, message, (optional) redirect
-      $alert = $_SESSION['alert'];
-      $type = htmlspecialchars($alert['type'] ?? 'info', ENT_QUOTES);
-      $message = htmlspecialchars($alert['message'] ?? '', ENT_QUOTES);
-      $redirect = isset($alert['redirect']) ? htmlspecialchars($alert['redirect'], ENT_QUOTES) : '';
-      // Optionally provide timer for success messages
-      $timer = ($type === 'success') ? 1800 : 0; // 1800ms for success, 0 for others
-  ?>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      Swal.fire({
-        icon: '<?php echo $type; ?>',
-        title: '<?php echo ucfirst($type); ?>',
-        text: '<?php echo $message; ?>',
-        <?php if ($timer): ?>timer: <?php echo $timer; ?>, timerProgressBar: true,<?php endif; ?>
-        confirmButtonColor: '#3085d6'
-      }).then((result) => {
-        <?php if ($redirect): ?>
-          // If redirect is set in session, navigate there after alert closes
-         // window.location.href = '<?php echo $redirect; ?>';
-        <?php else: ?>
-        <?php endif; ?>
+  <?php if (!empty($_SESSION['alert'])):
+    $alert = $_SESSION['alert'];
+    $type = htmlspecialchars($alert['type'] ?? 'info', ENT_QUOTES);
+    $message = htmlspecialchars($alert['message'] ?? '', ENT_QUOTES);
+    $redirect = isset($alert['redirect']) ? htmlspecialchars($alert['redirect'], ENT_QUOTES) : '';
+    $timer = ($type === 'success') ? 1800 : 0;
+    ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+          icon: '<?php echo $type; ?>',
+          title: '<?php echo ucfirst($type); ?>',
+          text: '<?php echo $message; ?>',
+          <?php if ($timer): ?>timer: <?php echo $timer; ?>, timerProgressBar: true, <?php endif; ?>
+            confirmButtonColor: '#3085d6'
+        }).then((result) => {
+          <?php if ($redirect): ?>
+            // window.location.href = '<?php echo $redirect; ?>';
+          <?php else: ?>
+          <?php endif; ?>
+        });
       });
-    });
-  </script>
-  <?php 
+    </script>
+    <?php
     unset($_SESSION['alert']);
-    endif;
+  endif;
   ?>
 
 </body>
+
 </html>

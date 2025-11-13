@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,20 +11,25 @@
     <title>Add Fine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets\css\fine_form.css">
+    <!-- <link rel="stylesheet" href="assets\css\fine_form.css"> -->
     <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
 </head>
-
+<style>
+    .card {
+    width: auto !important;
+    }
+    .btn-primary {
+        margin-left: 0% !important;
+    }
+</style>
 <body>
-    <!-- <?php include 'header.php'; ?> -->
+    <?php include 'header.php'; ?>
     <div class="container py-5">
         <div class="card mx-auto" style="max-width: 800px;">
             <div class="card-body">
                 <h1 class="fine-title-1 text-center mb-4">Add Fine</h1>
 
                 <form action="process_fine.php" method="POST">
-
-                    <h3 class="text-primary mb-2 mt-3">Officer Details</h3>
 
 
                     <h3 class="text-primary mb-2 mt-3">Offender Details</h3>
@@ -30,7 +40,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">National ID (NIC)</label>
-                            <input type="text" name="offender_nic" class="form-control" placeholder="Enter NIC number">
+                            <input type="text" name="offender_nic" class="form-control" placeholder="Enter NIC number"
+                                maxlength="13" pattern="[0-9]{13}">
                         </div>
                     </div>
 
@@ -44,7 +55,10 @@
                             <input type="text" name="vehicle_no" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="offender_mobile" placeholder="Offender Mobile (+94XXXXXXXXX)">
+                            <label class="form-label">Offender Mobile</label>
+                            <input type="text" name="offender_mobile" placeholder="07XXXXXXXXX" class="form-control"
+                                maxlength="10" pattern="[0-9]{10}"
+                                title="Please enter a 10-digit mobile number starting with 07">
 
                         </div>
                     </div>
@@ -123,16 +137,13 @@
                             placeholder="Any officer notes..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Submit Fine</button>
+                    <button type="submit" class="btn btn-primary ">Submit Fine</button>
                 </form>
             </div>
         </div>
 
-        <footer>
-            © 2025 FineMate
-        </footer>
     </div>
-    <!-- <?php include 'footer.php'; ?> -->
+    <?php include 'footer.php'; ?>
 
 
 
@@ -142,8 +153,7 @@
     <script>
         $(document).ready(function () {
             $('form').submit(function (e) {
-                e.preventDefault(); // prevent normal form submission
-
+                e.preventDefault();
                 $.ajax({
                     url: 'process_fine.php',
                     method: 'POST',

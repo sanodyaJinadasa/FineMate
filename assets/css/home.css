@@ -838,11 +838,11 @@ footer a:hover {
 
 .contact-input:focus,
 .contact-textarea:focus {
-    border-color: #0d6efd;
+    border-color: #1f3c66;
 }
 
 .contact-btn {
-    background-color: #0d6efd;
+    background-color:#1f3c66;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -853,7 +853,7 @@ footer a:hover {
 }
 
 .contact-btn:hover {
-    background-color: #0b5ed7;
+    background-color:#1f3c66;
 }
 
 .contact-info {
@@ -875,7 +875,7 @@ footer a:hover {
 
 .contact-icon {
     font-size: 22px;
-    color: #0d6efd;
+    color: #56585b;
     min-width: 25px;
 }
 

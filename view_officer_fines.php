@@ -29,7 +29,7 @@ try {
 <body>
     <?php include 'header.php'; ?>
     <div class="container py-5">
-        <h1 class="mb-4">Fines Added by You</h1>
+        <h1 class="mb-4" style="color:white;">Fines</h1>
 
         <?php if (count($fines) === 0): ?>
             <div class="alert alert-info">You have not added any fines yet.</div>
@@ -76,7 +76,6 @@ try {
                                         class="btn btn-danger btn-sm">
                                         <i class="bi bi-file-earmark-pdf-fill"></i>PDF
                                     </a>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>

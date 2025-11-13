@@ -16,6 +16,11 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
 </head>
 
+<style>
+  .btn-primary {
+   margin-left: 0% !important;
+  }
+</style>
 <body>
 
   <?php include 'header.php'; ?>
@@ -26,8 +31,7 @@ if (session_status() === PHP_SESSION_NONE) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        // Send to Dialogflow webhook
-        fetch('https://your-webhook.com/location', {
+        fetch('http://localhost/FineMate/save_location.php', {
           method: 'POST',
           body: JSON.stringify({ latitude, longitude }),
           headers: { 'Content-Type': 'application/json' }
@@ -115,9 +119,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <section class="cards">
 
-    <a href="view_location.php" class="btn-secondary">View Location</a>
-
-
     <div class="card">
       <img src="img/fine_history_icon.jpg" alt="Fine History Icon">
       <h3>Fine History</h3>
@@ -148,13 +149,13 @@ if (session_status() === PHP_SESSION_NONE) {
         <input type="text" name="name" placeholder="Your Name" class="contact-input" required>
         <input type="email" name="email" placeholder="Your Email" class="contact-input" required>
         <textarea name="message" rows="4" placeholder="Your Message" class="contact-textarea" required></textarea>
-        <button type="submit" class="contact-btn">Send Message</button>
+        <button type="submit" class="contact-btn btn-primary">Send Message</button>
       </form>
 
 
       <div class="contact-info">
         <div class="contact-info-box">
-          <i class="fa-solid fa-location-dot contact-icon"></i>
+          <i class="fa-solid fa-location-dot contact-icon "></i>
           <p class="contact-info-text">123 Main Street, Colombo, Sri Lanka</p>
         </div>
         <div class="contact-info-box">
