@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) { echo 'Login required'; exit; }
 $user_id = intval($_SESSION['user_id']);
 
-$pdo = new PDO("mysql:host=localhost;dbname=finemate_db;charset=utf8mb4", 'db_user', 'db_pass');
+$pdo = new PDO("mysql:host=localhost;dbname=finemate;charset=utf8mb4", 'root', '');
 $stmt = $pdo->prepare("SELECT * FROM user_locations WHERE user_id = ? ORDER BY created_at DESC LIMIT 1");
 $stmt->execute([$user_id]);
 $loc = $stmt->fetch(PDO::FETCH_ASSOC);

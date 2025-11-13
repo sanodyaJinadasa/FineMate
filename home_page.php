@@ -114,6 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   <section class="cards">
+   
+      <a href="view_location.php" class="btn-secondary">View Location</a>
+   
+
     <div class="card">
       <img src="img/fine_history_icon.jpg" alt="Fine History Icon">
       <h3>Fine History</h3>
