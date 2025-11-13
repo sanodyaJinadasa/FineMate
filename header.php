@@ -1,4 +1,4 @@
-  <link rel="stylesheet" href="assets/css/home.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
  <nav class="navbar">
@@ -36,3 +36,21 @@
     </li>
     </ul>
   </nav>
+  <script>
+    // Simple dropdown toggle for touch/mobile: toggles 'open' class on .user-menu
+    (function(){
+      document.addEventListener('click', function(e){
+        var userMenu = e.target.closest('.user-menu');
+        var anyUserMenus = document.querySelectorAll('.user-menu');
+
+        // close other open menus when clicking outside or on another menu
+        if (!userMenu) {
+          anyUserMenus.forEach(function(m){ m.classList.remove('open'); });
+          return;
+        }
+
+        // toggle the clicked one
+        userMenu.classList.toggle('open');
+      });
+    })();
+  </script>
