@@ -65,7 +65,7 @@ $weather_data = $stmt4->fetchAll(PDO::FETCH_ASSOC);
     <!-- Export Button -->
     <div class="mb-4">
         <!-- <a href="export_fines_report_pdf.php" class="btn btn-success">Export as PDF</a> -->
-        <button id="exportPDF" class="btn btn-danger mt-3">Export Charts as PDF</button>
+        <!-- <button id="exportPDF" class="btn btn-danger mt-3">Export Charts as PDF</button> -->
 
     </div>
 

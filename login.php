@@ -1,7 +1,6 @@
-
-  <?php
-  session_start();
-  ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,16 +33,22 @@
 
           <div class="mb-3">
             <label for="email" class="form-label fw-semibold">Email address</label>
-           <input type="email"  class="form-control" id="email" name="email" value="<?php if(isset($_COOKIE['user_email'])) echo $_COOKIE['user_email']; ?>" placeholder="Enter Your Email">
+            <!-- <input type="email"  class="form-control" id="email" name="email" value="<?php if (isset($_COOKIE['user_email']))
+              echo $_COOKIE['user_email']; ?>" placeholder="Enter Your Email"> -->
+            <input type="email" name="email" value="<?= $_COOKIE['user_email'] ?? '' ?>" class="form-control" id="email"
+              placeholder="Enter Your Email">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label fw-semibold">Password</label>
-           <input type="password" class="form-control" id="password" name="password" value="<?php if(isset($_COOKIE['user_password'])) echo $_COOKIE['user_password']; ?>" placeholder="Enter Your Password">
-
+            <!-- <input type="password" class="form-control" id="password" name="password" value="<?php if (isset($_COOKIE['user_password']))
+              echo $_COOKIE['user_password']; ?>" placeholder="Enter Your Password"> -->
+            <input type="password" name="password" value="<?= $_COOKIE['user_password'] ?? '' ?>" class="form-control"
+              id="password" placeholder="Enter Your Password">
           </div>
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-              <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE['user_email'])) echo 'checked'; ?>>
+              <input type="checkbox" id="remember" name="remember" <?php if (isset($_COOKIE['user_email']))
+                echo 'checked'; ?>>
               <label for="remember" class="small">Remember me</label>
             </div>
             <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
@@ -69,7 +74,8 @@
     </div>
   </div>
 
-<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4">
         <div class="modal-header bg-primary text-white">
@@ -78,10 +84,12 @@
         </div>
         <form action="forgot_password_process.php" method="POST">
           <div class="modal-body">
-            <p class="small text-muted mb-3">Enter your registered email address and we’ll send you a link to reset your password.</p>
+            <p class="small text-muted mb-3">Enter your registered email address and we’ll send you a link to reset your
+              password.</p>
             <div class="mb-3">
               <label for="resetEmail" class="form-label fw-semibold">Email address</label>
-              <input type="email" class="form-control" id="resetEmail" name="resetEmail" placeholder="Enter your email" required>
+              <input type="email" class="form-control" id="resetEmail" name="resetEmail" placeholder="Enter your email"
+                required>
             </div>
           </div>
           <div class="modal-footer">
@@ -96,20 +104,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-   <?php
+  <?php
   if (isset($_SESSION['alert'])) {
-      $alert = $_SESSION['alert'];
-      echo "<script>
+    $alert = $_SESSION['alert'];
+    echo "<script>
       document.addEventListener('DOMContentLoaded', function() {
           Swal.fire({
               icon: '{$alert['type']}',
-              title: '".ucfirst($alert['type'])."',
+              title: '" . ucfirst($alert['type']) . "',
               text: '{$alert['message']}',
               confirmButtonColor: '#3085d6',
           });
       });
       </script>";
-      unset($_SESSION['alert']);
+    unset($_SESSION['alert']);
   }
   ?>
 

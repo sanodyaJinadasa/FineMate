@@ -27,79 +27,83 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>All Drivers - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/admin_view.css">
 </head>
+
 <body>
 
-<?php include 'admin_header.php'; ?>
-<div class="container py-5">
-    <h1>All Drivers</h1>
-    <div class="d-flex justify-content-between align-items-center mb-4">    
-        <a href="export_drivers_pdf.php" class="btn btn-success">
-            <i class="bi bi-file-earmark-pdf"></i> Export PDF
-        </a>
-    </div>
-
-    <?php if (count($drivers) === 0): ?>
-        <div class="alert alert-info">No drivers found in the system.</div>
-    <?php else: ?>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>License No</th>
-                        <th>NIC</th>
-                        <th>Address</th>
-                        <th>Contact No</th>
-                        <th>Total Points</th>
-                        <th>Status</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($drivers as $index => $driver): ?>
-                        <tr>
-                            <td><?= $index + 1 ?></td>
-                            <td><?= htmlspecialchars($driver['name']) ?></td>
-                            <td><?= htmlspecialchars($driver['email']) ?></td>
-                            <td><?= htmlspecialchars($driver['license_no']) ?></td>
-                            <td><?= htmlspecialchars($driver['nic']) ?></td>
-                            <td><?= htmlspecialchars($driver['address']) ?></td>
-                            <td><?= htmlspecialchars($driver['contact_no']) ?></td>
-                            <td><?= htmlspecialchars($driver['total_points']) ?></td>
-                            <td>
-                                <?php if ($driver['driver_status'] == 'active'): ?>
-                                    <span class="badge bg-success">Active</span>
-                                <?php else: ?>
-                                    <span class="badge bg-secondary">Inactive</span>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= htmlspecialchars($driver['driver_created_at']) ?></td>
-                            <td>
-                                <a href="edit_driver.php?user_id=<?= $driver['user_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="delete_driver.php?user_id=<?= $driver['user_id'] ?>" 
-                                   class="btn btn-sm btn-danger" 
-                                   onclick="return confirm('Are you sure you want to delete this driver?');">
-                                   Delete
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+    <?php include 'admin_header.php'; ?>
+    <div class="container py-5">
+        <h1>All Drivers</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="export_drivers_pdf.php" class="btn btn-success">
+                <i class="bi bi-file-earmark-pdf"></i> Export PDF
+            </a>
         </div>
-    <?php endif; ?>
-</div>
-   <?php include 'admin_footer.php'; ?>
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+        <?php if (count($drivers) === 0): ?>
+            <div class="alert alert-info">No drivers found in the system.</div>
+        <?php else: ?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>License No</th>
+                            <th>NIC</th>
+                            <th>Address</th>
+                            <th>Contact No</th>
+                            <th>Total Points</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($drivers as $index => $driver): ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= htmlspecialchars($driver['name']) ?></td>
+                                <td><?= htmlspecialchars($driver['email']) ?></td>
+                                <td><?= htmlspecialchars($driver['license_no']) ?></td>
+                                <td><?= htmlspecialchars($driver['nic']) ?></td>
+                                <td><?= htmlspecialchars($driver['address']) ?></td>
+                                <td><?= htmlspecialchars($driver['contact_no']) ?></td>
+                                <td><?= htmlspecialchars($driver['total_points']) ?></td>
+                                <td>
+                                    <?php if ($driver['driver_status'] == 'active'): ?>
+                                        <span class="badge bg-success">Active</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= htmlspecialchars($driver['driver_created_at']) ?></td>
+                                <td>
+                                    <a href="edit_driver.php?user_id=<?= $driver['user_id'] ?>"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="delete_driver.php?user_id=<?= $driver['user_id'] ?>"
+                                        class="btn btn-sm btn-danger swal-delete" data-id="<?= $driver['user_id'] ?>">
+                                        Delete
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php include 'admin_footer.php'; ?>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </body>
+
 </html>

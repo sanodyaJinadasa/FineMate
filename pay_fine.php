@@ -25,19 +25,21 @@ if (!$fine) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pay Fine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 </head>
+
 <body class="bg-light">
 
-<div class="container mt-5">
-    <div class="card shadow-lg">
+    <div class="container mt-5">
+        <div class="card shadow-lg">
 
 
 
-    <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
+            <!-- <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
     <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
     <input type="hidden" name="return_url" value="http://yourwebsite.com/payment-success.php">
     <input type="hidden" name="cancel_url" value="http://yourwebsite.com/payment-cancel.php">
@@ -49,48 +51,49 @@ if (!$fine) {
     <input type="hidden" name="amount" value="100.00">
 
     <input type="submit" value="Pay Now">
-</form>
+</form> -->
 
 
 
 
-        <div class="card-header bg-primary text-white">
-            <h4>Pay Fine - #<?= htmlspecialchars($fine['fine_id']) ?></h4>
-        </div>
-        <div class="card-body">
-            <p><strong>Fine Reason:</strong> <?= htmlspecialchars($fine['fine_type']) ?></p>
-            <p><strong>Amount:</strong> Rs. <?= number_format($fine['fine_amount'], 2) ?></p>
+            <div class="card-header bg-primary text-white">
+                <h4>Pay Fine - #<?= htmlspecialchars($fine['fine_id']) ?></h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Fine Reason:</strong> <?= htmlspecialchars($fine['fine_type']) ?></p>
+                <p><strong>Amount:</strong> Rs. <?= number_format($fine['fine_amount'], 2) ?></p>
 
-            <form action="process_payment.php" method="POST">
-                <input type="hidden" name="fine_id" value="<?= $fine['fine_id'] ?>">
-                <input type="hidden" name="amount" value="<?= $fine['fine_amount'] ?>">
+                <form action="process_payment.php" method="POST">
+                    <input type="hidden" name="fine_id" value="<?= $fine['fine_id'] ?>">
+                    <input type="hidden" name="amount" value="<?= $fine['fine_amount'] ?>">
 
-                <div class="mb-3">
-                    <label class="form-label">Card Holder Name</label>
-                    <input type="text" name="card_holder_name" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Card Number</label>
-                    <input type="text" name="card_number" maxlength="16" class="form-control" required>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Expiry Date (MM/YY)</label>
-                        <input type="text" name="expiry_date" class="form-control" required>
+                    <div class="mb-3">
+                        <label class="form-label">Card Holder Name</label>
+                        <input type="text" name="card_holder_name" class="form-control" required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">CVV</label>
-                        <input type="password" name="cvv" maxlength="4" class="form-control" required>
-                    </div>
-                </div>
 
-                <button type="submit" class="btn btn-success w-100">Pay Now</button>
-            </form>
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" name="card_number" maxlength="16" class="form-control" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiry Date (MM/YY)</label>
+                            <input type="text" name="expiry_date" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">CVV</label>
+                            <input type="password" name="cvv" maxlength="4" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Pay Now</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 </body>
+
 </html>

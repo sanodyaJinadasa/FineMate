@@ -37,7 +37,26 @@ try {
     <meta charset="UTF-8">
     <title>My Fines</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papbXQ+Y6X+6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q6Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="assets/css/home.css">
 </head>
+
+<style>
+    body {
+ background: #0e1117 url('img/white-trianglify.jpg') !important;
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-light);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    animation: fadeIn 0.6s ease-in-out;
+}
+</style>
 
 <body>
     <?php include 'header.php'; ?>
@@ -51,7 +70,7 @@ try {
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>#</th>
+                            <th>#d</th>
                             <th>Fine Type</th>
                             <th>Amount (Rs)</th>
                             <th>Date</th>
@@ -79,14 +98,18 @@ try {
                                 <td><?= htmlspecialchars($fine['remarks']) ?></td>
                                 <td>
                                     <?php if ($fine['payment_status'] === 'Pending'): ?>
-                                        <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>"
-                                            class="btn btn-sm btn-primary">Pay</a>
+                                        <!-- <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>"
+                                            class="btn btn-sm btn-primary">Pay</a> -->
+
+                                             <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>"
+                                            class="btn btn-sm btn-danger" target="_blank">
+                                        <i class="fa fa-credit-card" aria-hidden="true"></i> Pay
+                                        </a>
                                     <?php else: ?>
                                         <a href="generate_fine_pdf.php?fine_id=<?= $fine['fine_id'] ?>"
-                                            class="btn btn-sm btn-danger" target="_blank">
+                                            class="btn btn-sm btn-success" target="_blank">
                                             <i class="fas fa-file-pdf"></i> PDF
                                         </a>
-                                        <span class="badge bg-success">Done</span>
                                     <?php endif; ?>
                                 </td>
                             </tr>

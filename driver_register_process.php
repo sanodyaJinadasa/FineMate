@@ -42,6 +42,28 @@ if ($license_no === '') {
     set_alert_and_redirect('error', 'License number is required.');
 }
 
+
+if ($nic === '') {
+    set_alert_and_redirect('error', 'NIC is required.');
+}
+
+if (!preg_match('/^\d{12,13}$/', $nic)) {
+    set_alert_and_redirect('error', 'NIC must be 12 or 13 digits.');
+}
+
+if ($address === '') {
+    set_alert_and_redirect('error', 'Address is required.');
+}
+
+if ($contact_no === '') {
+    set_alert_and_redirect('error', 'Contact number is required.');
+}
+
+if (!preg_match('/^\d{10}$/', $contact_no)) {
+    set_alert_and_redirect('error', 'Contact number must be exactly 10 digits.');
+}
+
+
 try {
     // Check for existing email
     $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
@@ -78,7 +100,7 @@ try {
     // Success alert — redirect to home_page.php after showing alert on the form page
     $_SESSION['alert'] = [
         'type' => 'success',
-        'message' => "Registration successful! Welcome, " . $name . ".",
+        'message' => "Registration successful!",
         // We'll instruct the form page to redirect to home_page.php after the alert
         'redirect' => 'home_page.php'
     ];

@@ -7,14 +7,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     die("Unauthorized access.");
 }
 
-// Validate user_id
 if (!isset($_GET['user_id'])) {
     die("Invalid request.");
 }
 
 $user_id = $_GET['user_id'];
 
-// Fetch existing driver info
 $stmt = $pdo->prepare("
     SELECT u.user_id, u.name, u.email, u.status AS user_status,
            d.license_no, d.nic, d.address, d.contact_no, d.total_points, d.status AS driver_status
@@ -29,7 +27,6 @@ if (!$driver) {
     die("Driver not found.");
 }
 
-// Handle update form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name         = $_POST['name'];
     $email        = $_POST['email'];
@@ -57,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pdo->commit();
 
-        header("Location: admin_view_drivers.php?msg=Driver+updated+successfully");
+        header("Location: admin_view_drivers.php?msg=Officer updated successfully");
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();
