@@ -42,6 +42,22 @@ $admin_name = $_SESSION['name'];
     <link rel="stylesheet" href="assets/css/admin_dashboard.css">
 </head>
 
+<style>
+    body {
+    background: #0e1117 url('assets/img/dashboard_background.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-light);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    animation: fadeIn 0.6s ease-in-out;
+}
+</style>
+
 <body>
 
 <?php include 'admin_header.php'; ?>
