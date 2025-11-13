@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Fine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets\css\fine_form.css">
     <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
 </head>
+
 <body>
     <!-- <?php include 'header.php'; ?> -->
     <div class="container py-5">
@@ -18,9 +18,9 @@
                 <h1 class="fine-title-1 text-center mb-4">Add Fine</h1>
 
                 <form action="process_fine.php" method="POST">
-                    
+
                     <h3 class="text-primary mb-2 mt-3">Officer Details</h3>
-                 
+
 
                     <h3 class="text-primary mb-2 mt-3">Offender Details</h3>
                     <div class="row mb-3">
@@ -35,13 +35,17 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label">License No</label>
                             <input type="text" name="offender_license_no" class="form-control">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label">Vehicle No</label>
                             <input type="text" name="vehicle_no" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="offender_mobile" placeholder="Offender Mobile (+94XXXXXXXXX)">
+
                         </div>
                     </div>
 
@@ -77,7 +81,8 @@
 
                     <div class="mb-3">
                         <label class="form-label">Location</label>
-                        <input type="text" name="fine_location" class="form-control" placeholder="e.g., Galle Road, Colombo">
+                        <input type="text" name="fine_location" class="form-control"
+                            placeholder="e.g., Galle Road, Colombo">
                     </div>
 
                     <div class="mb-3">
@@ -93,7 +98,8 @@
 
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea name="description" rows="3" class="form-control" placeholder="Describe the violation..."></textarea>
+                        <textarea name="description" rows="3" class="form-control"
+                            placeholder="Describe the violation..."></textarea>
                     </div>
 
                     <h3 class="text-primary mb-2 mt-3">Payment Details</h3>
@@ -113,7 +119,8 @@
 
                     <div class="mb-3">
                         <label class="form-label">Remarks</label>
-                        <textarea name="remarks" rows="2" class="form-control" placeholder="Any officer notes..."></textarea>
+                        <textarea name="remarks" rows="2" class="form-control"
+                            placeholder="Any officer notes..."></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Submit Fine</button>
@@ -130,50 +137,59 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    $('form').submit(function(e) {
-        e.preventDefault(); // prevent normal form submission
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (e) {
+                e.preventDefault(); // prevent normal form submission
 
-        $.ajax({
-            url: 'process_fine.php',
-            method: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: response.message,
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                    // Reset form if needed
-                    $('form')[0].reset();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: response.message
-                    });
-                }
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Something went wrong. Try again!'
+                $.ajax({
+                    url: 'process_fine.php',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message,
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            // Reset form if needed
+                            //  $('form')[0].reset();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.message
+                            });
+                        }
+                    },
+                    error: function (jqXHR) {
+                        let message = "Something went wrong. Try again!";
+                        if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+                            message = jqXHR.responseJSON.message;
+                        } else if (jqXHR.responseText) {
+                            message = jqXHR.responseText;
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: message
+                        });
+                    }
+
                 });
-            }
+            });
         });
-    });
-});
-</script>
+    </script>
 
 
 
 </body>
+
 </html>

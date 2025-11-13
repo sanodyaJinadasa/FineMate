@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 ?>
 
@@ -20,72 +20,72 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <?php include 'header.php'; ?>
 
-<script>
-  if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition((position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-    // Send to Dialogflow webhook
-    fetch('https://your-webhook.com/location', {
-      method: 'POST',
-      body: JSON.stringify({ latitude, longitude }),
-      headers: { 'Content-Type': 'application/json' }
+        // Send to Dialogflow webhook
+        fetch('https://your-webhook.com/location', {
+          method: 'POST',
+          body: JSON.stringify({ latitude, longitude }),
+          headers: { 'Content-Type': 'application/json' }
+        });
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+
+
+    const axios = require('axios');
+
+    app.post('/location', async (req, res) => {
+      const { latitude, longitude } = req.body;
+
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=YOUR_GOOGLE_API_KEY`);
+      const city = response.data.results[0].address_components.find(c => c.types.includes('locality')).long_name;
+
+      res.json({ fulfillmentText: `You are in ${city}.` });
     });
-  });
-} else {
-  alert('Geolocation is not supported by this browser.');
-}
+
+  </script>
 
 
-const axios = require('axios');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // call this where appropriate (e.g., after user clicks a button or on load)
+      function sendLocationToServer(latitude, longitude) {
+        fetch('save_location.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ latitude, longitude })
+        })
+          .then(r => r.json())
+          .then(data => {
+            console.log('Server response:', data);
+            // optionally show a toast / update UI
+          })
+          .catch(err => console.error('Error sending location:', err));
+      }
 
-app.post('/location', async (req, res) => {
-  const { latitude, longitude } = req.body;
-
-  const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=YOUR_GOOGLE_API_KEY`);
-  const city = response.data.results[0].address_components.find(c => c.types.includes('locality')).long_name;
-
-  res.json({ fulfillmentText: `You are in ${city}.` });
-});
-
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // call this where appropriate (e.g., after user clicks a button or on load)
-  function sendLocationToServer(latitude, longitude) {
-    fetch('save_location.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ latitude, longitude })
-    })
-    .then(r => r.json())
-    .then(data => {
-      console.log('Server response:', data);
-      // optionally show a toast / update UI
-    })
-    .catch(err => console.error('Error sending location:', err));
-  }
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        sendLocationToServer(lat, lng);
-      },
-      error => {
-        console.warn('Geolocation error', error);
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-  } else {
-    alert('Geolocation is not supported by this browser.');
-  }
-});
-</script>
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            sendLocationToServer(lat, lng);
+          },
+          error => {
+            console.warn('Geolocation error', error);
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      } else {
+        alert('Geolocation is not supported by this browser.');
+      }
+    });
+  </script>
 
 
   <section class="hero">
@@ -114,9 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   <section class="cards">
-   
-      <a href="view_location.php" class="btn-secondary">View Location</a>
-   
+
+    <a href="view_location.php" class="btn-secondary">View Location</a>
+
 
     <div class="card">
       <img src="img/fine_history_icon.jpg" alt="Fine History Icon">
@@ -177,20 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 
-  <?php
-  if (isset($_SESSION['alert'])) {
-      $alert = $_SESSION['alert'];
-      echo "<script>
+<?php
+if (isset($_SESSION['alert'])) {
+  $alert = $_SESSION['alert'];
+  echo "<script>
           Swal.fire({
               icon: '{$alert['type']}',
-              title: '".ucfirst($alert['type'])."',
+              title: '" . ucfirst($alert['type']) . "',
               text: '{$alert['message']}',
               confirmButtonColor: '#3085d6',
           });
       </script>";
-      unset($_SESSION['alert']);
-  }
-  ?>
+  unset($_SESSION['alert']);
+}
+?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
