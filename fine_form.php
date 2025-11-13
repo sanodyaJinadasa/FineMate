@@ -8,6 +8,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
         rel="stylesheet">
     <link rel="stylesheet" href="assets\css\fine_form.css">
+    <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
 </head>
 <body>
     <!-- <?php include 'header.php'; ?> -->

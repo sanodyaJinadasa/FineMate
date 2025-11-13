@@ -40,6 +40,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>All Officers - Admin</title>
+    <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/admin_view_officers.css">
 </head>

@@ -1,6 +1,16 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
  <link rel="stylesheet" href="assets/css/home.css">
+
+   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="FineMate"
+  agent-id="c7abaa0d-07d5-41cc-82d1-a686aadac8d9"
+  language-code="en"
+></df-messenger>
+
+
  <nav class="navbar">
     <div class="logo">
       <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">

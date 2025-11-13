@@ -28,6 +28,7 @@ if ($role === 'driver') {
 <html>
 <head>
     <title>Edit Profile</title>
+    <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body>

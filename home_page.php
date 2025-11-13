@@ -9,14 +9,47 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FineMate | Traffic Fine Management System</title>
   <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="icon" type="image/png" href="img/fine_mate_logo.png">
 </head>
 
 <body>
 
   <?php include 'header.php'; ?>
+
+<script>
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    // Send to Dialogflow webhook
+    fetch('https://your-webhook.com/location', {
+      method: 'POST',
+      body: JSON.stringify({ latitude, longitude }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+  });
+} else {
+  alert('Geolocation is not supported by this browser.');
+}
+
+
+const axios = require('axios');
+
+app.post('/location', async (req, res) => {
+  const { latitude, longitude } = req.body;
+
+  const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=YOUR_GOOGLE_API_KEY`);
+  const city = response.data.results[0].address_components.find(c => c.types.includes('locality')).long_name;
+
+  res.json({ fulfillmentText: `You are in ${city}.` });
+});
+
+</script>
 
   <section class="hero">
     <div class="hero-text">
