@@ -102,7 +102,7 @@ try {
                                             class="btn btn-sm btn-primary">Pay</a> -->
 
                                              <a href="pay_fine.php?fine_id=<?= $fine['fine_id'] ?>"
-                                            class="btn btn-sm btn-danger" target="_blank">
+                                            class="btn btn-sm btn-danger">
                                         <i class="fa fa-credit-card" aria-hidden="true"></i> Pay
                                         </a>
                                     <?php else: ?>

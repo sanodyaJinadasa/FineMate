@@ -33,9 +33,10 @@ if (!$fine) {
 </head>
 
 <body class="bg-light">
+ <?php include 'header.php'; ?>
 
-    <div class="container mt-5">
-        <div class="card shadow-lg">
+    <div class="container mt-5  payment-container">
+        <div class="card shadow-lg pay-card">
 
 
 
@@ -56,7 +57,7 @@ if (!$fine) {
 
 
 
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary text-white" >
                 <h4>Pay Fine - #<?= htmlspecialchars($fine['fine_id']) ?></h4>
             </div>
             <div class="card-body">
@@ -93,7 +94,7 @@ if (!$fine) {
             </div>
         </div>
     </div>
-
+<?php include 'footer.php'; ?>
 </body>
 
 </html>

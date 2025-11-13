@@ -1,6 +1,6 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+ <link rel="stylesheet" href="assets/css/home.css">
  <nav class="navbar">
     <div class="logo">
       <img src="img/fine_mate_logo.png" alt="FineMate Logo" width="40" height="40">
