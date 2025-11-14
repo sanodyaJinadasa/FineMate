@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -16,12 +15,14 @@ session_start();
 </head>
 <style>
     .card {
-    width: auto !important;
+        width: auto !important;
     }
+
     .btn-primary {
         margin-left: 0% !important;
     }
 </style>
+
 <body>
     <?php include 'header.php'; ?>
     <div class="container py-5">
@@ -93,10 +94,15 @@ session_start();
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Location</label>
+                    <div class="mb-3 input-group">
+                        <label class="form-label input-group-text">Location</label>
                         <input type="text" name="fine_location" class="form-control"
-                            placeholder="e.g., Galle Road, Colombo">
+                            placeholder="e.g., Galle Road, Colombo" id="address">
+                        <a href="view_location.php" class="btn btn-secondary"
+                            onclick="window.open('view_location.php', 'selectLocation', 'width=800,height=600'); return false;">
+                            Select Location
+                        </a>
+
                     </div>
 
                     <div class="mb-3">

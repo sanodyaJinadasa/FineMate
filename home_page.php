@@ -1,6 +1,11 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
+
+  
+$weekly_data = json_decode(file_get_contents("data/weekly_noise.json"), true);
+$hourly_data = json_decode(file_get_contents("data/hourly_noise.json"), true);
+
 }
 ?>
 
@@ -18,9 +23,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <style>
   .btn-primary {
-   margin-left: 0% !important;
+    margin-left: 0% !important;
   }
 </style>
+
 <body>
 
   <?php include 'header.php'; ?>
@@ -139,6 +145,12 @@ if (session_status() === PHP_SESSION_NONE) {
   </section>
 
 
+
+<?php include 'chart.php'; ?>
+
+
+
+
   <!-- Contact Section -->
   <section class="contact-section" id="contact-section">
     <div class="contact-container">
@@ -177,6 +189,12 @@ if (session_status() === PHP_SESSION_NONE) {
   <?php include 'footer.php'; ?>
 
 </body>
+
+
+
+
+
+
 
 <?php
 if (isset($_SESSION['alert'])) {

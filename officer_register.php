@@ -52,11 +52,22 @@
             <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number" required>
           </div>
 
+          <!-- <div class="mb-3 input-group">
+            <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+          </div> -->
+
+          
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
             <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+            <a href="view_location.php" class="btn btn-secondary"
+              onclick="window.open('view_location.php', 'selectLocation', 'width=800,height=600'); return false;">
+              Select Location
+            </a>
           </div>
 
+          
           <div class="mb-3 input-group">
             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
             <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" required>
