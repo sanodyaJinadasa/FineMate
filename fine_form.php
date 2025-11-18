@@ -21,6 +21,10 @@ session_start();
     .btn-primary {
         margin-left: 0% !important;
     }
+    .card:hover::before {
+    height: 0% !important;
+     opacity: 0.05;
+}
 </style>
 
 <body>
@@ -105,6 +109,8 @@ session_start();
 
                     </div>
 
+
+                    
                     <div class="mb-3">
                         <label class="form-label">Weather Conditions</label>
                         <select name="weather" class="form-select">
