@@ -520,6 +520,9 @@ img {
     background-color: #00fff7ff;
     box-shadow: 0 0 10px #00bcd4;
     animation: glow 1.5s ease-in-out infinite alternate;
+    /* allow pointer events to pass through this decorative layer so inputs remain clickable */
+    pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes glow {
@@ -536,6 +539,7 @@ img {
 .card:hover::before {
     height: 100%;
     opacity: 0.05;
+    pointer-events: none;
 }
 
 .card:hover {
