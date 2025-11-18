@@ -263,7 +263,6 @@
         }
 
 
-        // Send address back to parent
         useBtn.onclick = () => {
           if (window.opener && !window.opener.closed) {
             if (window.opener.document.getElementById('address')) {
