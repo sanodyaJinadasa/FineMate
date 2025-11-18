@@ -1,4 +1,4 @@
-<footer>
+<footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999;">
   <p>© 2025 FineMate System</p>
   <p>
     <a href="#">Privacy Policy</a> |
